@@ -1,0 +1,84 @@
+<h1 class="page-header">Fields</h1>
+<div class="panel">
+
+    <ul class="nav nav-tabs">
+        <li role="presentation" ng-class="{active: $location.url()=='/forms', disabled: $location.url()=='/forms'} "><a href="#/forms">Forms</a></li>
+        <li role="presentation" ng-class="{active: $location.url()=='/fields', disabled: $location.url()=='/fields'} "><a href="#/fields">Fields</a></li>
+    </ul>
+
+    <div class="panel-body">
+        <div class="container spaced">First Name:<br>
+            <input type="text" size="50" placeholder="First name">
+            <div class="pull-right">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+            </div>
+        </div>
+        <div class="container spaced">Last Name:<br>
+            <input type="text" size="50" placeholder="Last name">
+            <div class="pull-right">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+            </div>
+        </div>
+        <div class="container spaced">Date of Birth:<br>
+            <select>
+                <option value="date">Select a Date</option>
+            </select>
+            <div class="pull-right">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+            </div>
+        </div>
+        <div class="container spaced">Gender:<br>
+            <select>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <div class="pull-right">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+            </div>
+        </div>
+        <div class="container spaced">Roles:<br>
+            <form action="">
+                <input type="checkbox" name="roles" value="admin"> Admin
+                <div class="pull-right">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                </div><br>
+                <input type="checkbox" name="roles" value="no"> Student<br>
+                <input type="checkbox" name="roles" value="no"> User<br>
+            </form>
+        </div>
+        <div class="container spaced">Licence Agreement:<br>
+            <form action="">
+                <input type="radio" name="licence" value="yes"> Yes
+                <div class="pull-right">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                </div><br>
+                <input type="radio" name="licence" value="no"> No<br>
+            </form>
+        </div>
+        <h2 class="page-header"></h2>
+        <div class="container">Add New Field<br>
+            <select>
+                <option value="male">Single Line Text</option>
+            </select>
+            <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span>
+        </div>
+    </div>
+</div>
