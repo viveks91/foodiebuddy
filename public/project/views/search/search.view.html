@@ -9,12 +9,16 @@
             <input type="text" ng-model="form.placeLocation" placeholder="Location" class="form-control">
         </div>
         <button type="submit" class="btn btn-success" ng-click="searchPlaces(form)">Go!</button>
+        <button type="submit" class="btn btn-info" ng-click="clear()" ng-show="searchResults">Clear all</button>
     </form>
 </div>
 
-<div ng-show="searchResults">
-    <div ng-repeat="result in searchResults">
-
-        {{result}}
+<div class="container" ng-show="searchResults">
+    <h2>Results</h2>
+    <div class="results" ng-repeat="singleresult in searchResults">
+        <img ng-src="{{singleresult.image_url}}" class="images">
+        <h3>{{singleresult.name}}</h3>
+        <p>Ratings: {{singleresult.rating}}</p>
+        <p>Contact: {{singleresult.display_phone}}</p>
     </div>
 </div>

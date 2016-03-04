@@ -158,3 +158,20 @@ body {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+.results {
+    box-shadow: 0.5px 0.5px 3px #888888;
+    margin-top: 0.2cm;
+    background-color: white;
+    padding-top:2px;
+    padding-bottom:5px;
+    padding-left:10px;
+    position: relative;
+}
+
+.images {
+    float:left;
+    margin-top: 0.2cm;
+    margin-right: 5px;
+}
+
