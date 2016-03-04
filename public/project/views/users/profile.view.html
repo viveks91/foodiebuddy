@@ -1,0 +1,39 @@
+<h1 class="page-header">Profile</h1>
+<form class="form-horizontal" role="form" >
+    <div class="form-group form-group-lg">
+        <label class="col-sm-3 control-label">Username</label>
+        <div class="col-sm-9">
+            <INPUT id="uname" ng-model="currentUser.username" TYPE="text" placeholder="Username" class="form-control" maxlength="225">
+        </div>
+    </div>
+
+    <div class="form-group form-group-lg">
+        <label class="col-sm-3 control-label">Password</label>
+        <div class="col-sm-9">
+            <INPUT id="pwd" ng-model="currentUser.password" TYPE="password" placeholder="Password" class="form-control" maxlength="225">
+        </div>
+    </div>
+
+    <div class="form-group form-group-lg">
+        <label class="col-sm-3 control-label">First Name</label>
+        <div class="col-sm-9">
+            <INPUT id="fname" ng-model="currentUser.firstName" TYPE="text" placeholder="First Name" class="form-control" maxlength="225">
+        </div>
+    </div>
+
+    <div class="form-group form-group-lg">
+        <label class="col-sm-3 control-label">Second Name</label>
+        <div class="col-sm-9">
+            <INPUT id="sname" ng-model="currentUser.lastName" TYPE="text" placeholder="Second Name" class="form-control" maxlength="225">
+        </div>
+    </div>
+
+    <div class="form-group form-group-lg">
+        <label class="col-sm-3 control-label">Email</label>
+        <div class="col-sm-9">
+            <INPUT id="email" ng-model="currentUser.email" TYPE="email" placeholder="Email" class="form-control" maxlength="225">
+            <hr>
+            <button id="create" class="btn btn-info btn-block mediumfont" ng-click="updateUser(currentUser)">Update</button>
+        </div>
+    </div>
+</form>
