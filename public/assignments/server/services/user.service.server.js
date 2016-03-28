@@ -13,7 +13,7 @@ module.exports = function(app, userModel) {
     app.put("/api/assignment/admin/update/:id", adminUpdate);
     app.delete("/api/assignment/user/:id", deleteUser);
 
-    var uuid = require('node-uuid');
+    var uuid = require('uuid');
 
     function login(req, res) {
         var credentials = req.body;

@@ -6,7 +6,7 @@ module.exports = function(app, formModel) {
     app.post("/api/assignment/user/:userId/form", createForm);
     app.put("/api/assignment/form/:formId", updateForm);
 
-    var uuid = require('node-uuid');
+    var uuid = require('uuid');
 
     function updateForm(req, res) {
         var formId = req.params.formId;
