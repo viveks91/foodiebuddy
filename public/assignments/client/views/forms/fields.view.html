@@ -1,0 +1,167 @@
+<h1 class="page-header">Fields</h1>
+<div class="panel">
+
+    <ul class="nav nav-tabs">
+        <li role="presentation" ng-class="{active: model.$location.url()=='/forms', disabled: model.$location.url()=='/forms'} "><a href="#/forms">Forms</a></li>
+        <li role="presentation" ng-class="{active: model.$location.url().includes('/fields'), disabled: model.$location.url().includes('/fields')} "><a href="#/fields">Fields</a></li>
+    </ul>
+
+    <div class="panel-body" >
+        <div class="field-list" ng-show="model.fields.length>0">
+            <div ng-repeat="field in model.fields" class="container spaced" ng-switch="field.type" id="{{$index}}">
+                <label> {{field.label}}: </label>
+                <div ng-switch-when="TEXT">
+                    <div class="col-xs-4">
+                        <input type="field.type" class="form-control" size="50" placeholder="{{field.placeholder}}">
+                    </div>
+                    <div class="col-xs-3 pull-right">
+                        <a ng-click="model.openDiag(field)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <a ng-click="model.deleteField(field._id, model.currentFormId)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                        <span class="glyphicon glyphicon-align-justify handler" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+                <div ng-switch-when="EMAIL">
+                    <div class="col-xs-4">
+                        <input type="field.type" class="form-control col-sm-3" size="50" placeholder="{{field.placeholder}}">
+                    </div>
+                    <div class="col-xs-3 pull-right">
+                        <a ng-click="model.openDiag(field)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <a ng-click="model.deleteField(field._id, model.currentFormId)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                        <span class="glyphicon glyphicon-align-justify handler" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+                <div ng-switch-when="TEXTAREA">
+                    <div class="col-xs-4">
+                        <textarea rows="2" cols="50" class="form-control" placeholder="{{field.placeholder}}"></textarea>
+                    </div>
+                    <div class="col-xs-3 pull-right">
+                        <a ng-click="model.openDiag(field)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <a ng-click="model.deleteField(field._id, model.currentFormId)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                        <span class="glyphicon glyphicon-align-justify handler" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+                <div ng-switch-when="DATE">
+                    <input type="date">
+                    <div class="col-xs-3 pull-right">
+                        <a ng-click="model.openDiag(field)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <a ng-click="model.deleteField(field._id, model.currentFormId)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                        <span class="glyphicon glyphicon-align-justify handler" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+                <div ng-switch-when="OPTIONS">
+                    <div class="col-xs-4">
+                        <select>
+                            <option ng-repeat="option in field.options" value="{{option.value}}">{{option.label}}</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-3 pull-right">
+                        <a ng-click="model.openDiag(field)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <a ng-click="model.deleteField(field._id, model.currentFormId)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                        <span class="glyphicon glyphicon-align-justify handler" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+                <div ng-switch-when="CHECKBOXES">
+                    <div class="col-xs-3 pull-right">
+                        <a ng-click="model.openDiag(field)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <a ng-click="model.deleteField(field._id, model.currentFormId)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                        <span class="glyphicon glyphicon-align-justify handler" aria-hidden="true"></span>
+                    </div>
+                    <div ng-repeat="option in field.options" class="col-xs-9">
+                        <input type="checkbox" name="{{field._id}}" value="{{option.value}}"> {{option.label}}<br>
+                    </div>
+                </div>
+
+                <div ng-switch-default>
+                    <div class="col-xs-3 pull-right">
+                        <a ng-click="model.openDiag(field)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <a ng-click="model.deleteField(field._id, model.currentFormId)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                        <span class="glyphicon glyphicon-align-justify handler" aria-hidden="true"></span>
+                    </div>
+                    <div ng-repeat="option in field.options" class="col-xs-9">
+                        <input type="radio" name="{{field._id}}" value="{{option.value}}"> {{option.label}}<br>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <h2 class="page-header"></h2>
+        <div class="dropdown spaced"><label>Add New Field</label><br>
+            <div class="col-xs-10">
+                <select ng-model="model.newField">
+                    <option value="text">Single Line Text</option>
+                    <option value="area">Multi Line Text</option>
+                    <option value="date">Date</option>
+                    <option value="dropdown">Dropdown</option>
+                    <option value="checkbox">Checkboxes</option>
+                    <option value="radio">Radio Buttons</option>
+                </select>
+                <a ng-click="model.addField(model.newField)"><span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="dialog-single" title="Single Line Field">
+    <form>
+        <label>Label</label><br>
+        <input type="text" class="form-control" ng-model="model.currentField.label"><br>
+        <label>Placeholder</label><br>
+        <input type="text" class="form-control" ng-model="model.currentField.placeholder"><br>
+    </form>
+</div>
+
+<div id="dialog-multi" title="Multi Line Field">
+    <form>
+        <label>Label</label><br>
+        <input type="text" class="form-control" ng-model="model.currentField.label"><br>
+        <label>Placeholder</label><br>
+        <input type="text" class="form-control" ng-model="model.currentField.placeholder"><br>
+    </form>
+</div>
+
+<div id="dialog-date" title="Date Field">
+    <form>
+        <label>Label</label><br>
+        <input type="text" class="form-control" ng-model="model.currentField.label"><br>
+        <label>Label</label><br>
+    </form>
+</div>
+
+<div id="dialog-option" title="Dropdown Field">
+    <form>
+        <label>Label</label><br>
+        <input type="text" class="form-control" ng-model="model.currentField.label"><br>
+        <label>Options</label><br>
+        <textarea rows="3" class="form-control" ng-model="model.serialized"></textarea>
+    </form>
+</div>
+
+<div id="dialog-check" title="Checkbox Field">
+    <form>
+        <label>Label</label><br>
+        <input type="text" class="form-control" ng-model="model.currentField.label"><br>
+        <label>Options</label><br>
+        <textarea rows="3" class="form-control" ng-model="model.serialized"></textarea>
+    </form>
+</div>
+
+<div id="dialog-radio" title="Radio Button Field">
+    <form>
+        <label>Label</label><br>
+        <input type="text" ng-model="model.currentField.label" class="form-control"><br>
+        <label>Options</label><br>
+        <textarea rows="3" class="form-control" ng-model="model.serialized"></textarea>
+    </form>
+</div>
