@@ -15,6 +15,7 @@
         vm.serializeOptions = serializeOptions;
         vm.deserializeOptions = deserializeOptions;
         vm.updateField = updateField;
+        vm.addReplica = addReplica;
 
         vm.singleDialog = $( "#dialog-single" ).dialog({
             autoOpen: false,
@@ -209,6 +210,7 @@
             vm.currentField = angular.copy(field);
             switch(field.type) {
                 case "TEXT":
+                case "EMAIL":
                     vm.singleDialog.dialog( "open" );
                     break;
                 case "TEXTAREA":
@@ -251,6 +253,15 @@
             FieldService
                 .updateField(vm.currentFormId, vm.currentField._id, vm.currentField)
                 .then(function () {
+                });
+            loadAllFields();
+        }
+
+        function addReplica(field) {
+            field._id = null;
+            FieldService
+                .createFieldForForm(vm.currentFormId,field)
+                .then(function(){
                 });
             loadAllFields();
         }
