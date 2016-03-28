@@ -35,6 +35,8 @@
             if (Object.keys(newForm).length == 0) {
                 return;
             }
+            newForm["userId"] = vm.user_id;
+            newForm["fields"] = [];
             FormService
                 .createFormForUser(vm.user_id, newForm)
                 .then(function(){
