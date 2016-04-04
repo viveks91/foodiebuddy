@@ -196,8 +196,8 @@
             FieldService
                 .createFieldForForm(vm.currentFormId,field)
                 .then(function(){
+                    loadAllFields();
                 });
-            loadAllFields();
         }
 
         function openDiag(field) {
@@ -247,17 +247,16 @@
             FieldService
                 .updateField(vm.currentFormId, vm.currentField._id, vm.currentField)
                 .then(function () {
+                    loadAllFields();
                 });
-            loadAllFields();
         }
 
         function addReplica(field) {
-            field._id = null;
             FieldService
                 .createFieldForForm(vm.currentFormId,field)
                 .then(function(){
+                    loadAllFields();
                 });
-            loadAllFields();
         }
 
         function serializeOptions(options) {
@@ -285,8 +284,8 @@
             FieldService
                 .deleteFieldFromForm(formId, fieldId)
                 .then(function(){
+                    loadAllFields();
                 });
-            loadAllFields();
         }
 
         setTimeout(function(){

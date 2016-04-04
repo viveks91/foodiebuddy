@@ -69,6 +69,7 @@ module.exports = function(db, mongoose) {
     }
 
     function createUser(user) {
+        delete user['_id'];
         return UserModel.create(user);
     }
 

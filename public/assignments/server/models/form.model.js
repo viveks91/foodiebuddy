@@ -70,6 +70,7 @@ module.exports = function(db, mongoose) {
 
     function createForm(userId, form) {
         form['userId'] = userId;
+        delete form['_id'];
         return FormModel.create(form);
     }
 

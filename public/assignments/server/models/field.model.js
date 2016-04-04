@@ -32,7 +32,7 @@ module.exports = function(db, mongoose) {
     }
 
     function createField(field, formId) {
-
+        delete field['_id'];
         return FormModel.findByIdAndUpdate(
             formId,
             {

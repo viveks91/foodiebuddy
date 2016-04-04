@@ -25,6 +25,7 @@ module.exports = function(app, fieldModel) {
     function createField(req, res) {
         var formId = req.params.formId;
         var field = req.body;
+        delete field._id;
         fieldModel
             .createField(field, formId)
             .then(
