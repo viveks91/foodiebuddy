@@ -21,6 +21,7 @@
             vm.curUser["firstName"] = null;
             vm.curUser["lastName"] = null;
             vm.curUser["roles"] = [];
+            vm.curUser["email"] = vm.curUser["email"].split(",");
             UserService
                 .createUser(vm.curUser)
                 .then(function(response){

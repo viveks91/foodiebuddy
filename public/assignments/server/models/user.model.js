@@ -1,6 +1,30 @@
 "use strict";
+
+// load q promise library
+var q = require("q");
 var mock = require("./user.mock.json");
-module.exports = function(app) {
+
+module.exports = function(db, mongoose) {
+
+    // load user schema
+    var UserSchema = require("./user.schema.server.js")(mongoose);
+
+    // create user model from schema
+    var UserModel = mongoose.model('User', UserSchema);
+
+    // Mock data load
+    function init() {
+        for (var i=0; i< mock.length; i++){
+            var query = UserModel.findOneAndUpdate(
+                {username: mock[i].username},
+                mock[i],
+                {upsert: true}
+            );
+            query.exec();
+        }
+    }
+    init();
+
     var api = {
         findUserByCredentials: findUserByCredentials,
         createUser: createUser,
@@ -14,75 +38,45 @@ module.exports = function(app) {
     return api;
 
     function findAllUsers() {
-        return mock;
+        var deferred = q.defer();
+
+        UserModel.find(function (err, users) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(users);
+            }
+        });
+
+        return deferred.promise;
     }
 
     function updateUser(userId, updatedUser) {
-        for(var u in mock) {
-            if( mock[u]._id == userId ) {
-                mock[u].firstName = updatedUser.firstName;
-                mock[u].lastName = updatedUser.lastName;
-                mock[u].username = updatedUser.username;
-                mock[u].password = updatedUser.password;
-                mock[u].email = updatedUser.email;
-                mock[u].roles = updatedUser.roles;
-                break;
-            }
-        }
-        return mock;
+        delete updatedUser['_id'];
+        return UserModel.findOneAndUpdate(userId, updatedUser, {new: true});
     }
 
     function deleteUser(userId) {
-        for(var u in mock) {
-            if( mock[u]._id == userId ) {
-                mock.splice(u,1);
-                break;
-            }
-        }
-        return mock;
+        return UserModel.findByIdAndRemove(userId);
     }
 
     function findUsersByIds(userIds) {
-        var users = [];
-        for (var u in userIds) {
-            var user = findUserById (userIds[u]);
-            if (user) {
-                users.push (user);
-            }
-        }
-        return users;
+        return UserModel.find({'_id': {$in: userIds}});
     }
 
     function findUserById(userId) {
-        for(var u in mock) {
-            if( mock[u]._id == userId ) {
-                return mock[u];
-            }
-        }
-        return null;
+        return UserModel.findById(userId);
     }
 
     function createUser(user) {
-        mock.push(user);
-        return user;
+        return UserModel.create(user);
     }
 
     function findUserByCredentials(credentials) {
-        for(var u in mock) {
-            if( mock[u].username === credentials.username &&
-                mock[u].password === credentials.password) {
-                return mock[u];
-            }
-        }
-        return null;
+        return UserModel.findOne(credentials);
     }
 
     function findUserByUsername(username) {
-        for(var u in mock) {
-            if( mock[u].username === username) {
-                return mock[u];
-            }
-        }
-        return null;
+        return UserModel.findOne({username: username});
     }
 };

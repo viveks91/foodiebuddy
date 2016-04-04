@@ -27,6 +27,8 @@
     "cookie-parser": "^1.4.1",
     "express": "^3.21.2",
     "express-session": "^1.13.0",
+    "mongoose": "^4.4.10",
+    "q": "^1.4.1",
     "uuid": "^2.0.1"
   },
   "devDependencies": {},

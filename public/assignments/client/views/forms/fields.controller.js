@@ -152,24 +152,20 @@
             var field = {};
             switch (fieldType) {
                 case "text":
-                    field._id = null;
                     field.label = "New Text Field";
                     field.placeholder = "New Field";
                     field.type = "TEXT";
                     break;
                 case "area":
-                    field._id = null;
                     field.label = "New Text Field";
                     field.placeholder = "New Field";
                     field.type = "TEXTAREA";
                     break;
                 case "date":
-                    field._id = null;
                     field.label = "New Date Field";
                     field.type = "DATE";
                     break;
                 case "dropdown":
-                    field._id = null;
                     field.label = "New Dropdown";
                     field.type = "OPTIONS";
                     field.options = [
@@ -179,7 +175,6 @@
                     ];
                     break;
                 case "checkbox":
-                    field._id = null;
                     field.label = "New Checkboxes";
                     field.type = "CHECKBOXES";
                     field.options = [
@@ -189,7 +184,6 @@
                     ];
                     break;
                 case "radio":
-                    field._id = null;
                     field.label = "New Radio Buttons";
                     field.type = "RADIOS";
                     field.options =  [

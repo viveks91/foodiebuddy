@@ -8,26 +8,26 @@
 
         var vm = this;
         vm.updateUser = updateUser;
+
         function init() {
             UserService
                 .getCurrentUser()
                 .then(function(response) {
                     vm.user = response.data;
+                    vm.user['email'] = vm.user['email'].toString();
                 })
         }
         init();
 
         function updateUser(newUser) {
+            newUser['email'] = newUser['email'].split(",");
             UserService
                 .updateUser(newUser._id, newUser)
-                .then(function(){
+                .then(function(response){
+                    var user = response.data;
+                    UserService.setCurrentUser(user);
                 });
-            UserService
-                .getCurrentUser()
-                .then(function(response) {
-                    vm.updatedUser = response.data;
-                    UserService.setCurrentUser(vm.updatedUser);
-                })
+
         }
     }
 })();
