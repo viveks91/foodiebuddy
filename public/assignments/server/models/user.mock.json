@@ -1,5 +1,14 @@
 [
   {
+    "firstName": "root",
+    "lastName": "",
+    "username": "root",
+    "password": "password",
+    "email": [],
+    "roles": ["user", "admin"],
+    "phones": []
+  },
+  {
     "firstName": "Alice",
     "lastName": "Wonderland",
     "username": "alice",
