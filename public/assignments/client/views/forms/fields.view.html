@@ -7,7 +7,7 @@
     </ul>
 
     <div class="panel-body" >
-        <div class="field-list" ng-show="model.fields.length>0">
+        <div class="field-list" ng-show="model.fields.length>0" jga-sortable jga-sortable-callback="model.sortFields(start, end)">
             <div ng-repeat="field in model.fields" class="container spaced" ng-switch="field.type" id="{{$index}}">
                 <label> {{field.label}}: </label>
                 <div ng-switch-when="TEXT">

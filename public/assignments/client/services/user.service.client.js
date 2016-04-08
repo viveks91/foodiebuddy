@@ -18,16 +18,21 @@
             logout: logout,
             adminAdd: adminAdd,
             adminUpdate: adminUpdate,
-            login: login
+            login: login,
+            isAdmin: isAdmin
         };
         return api;
 
         function logout() {
-            return $http.post("/api/assignment/logout");
+            return $http.post("/api/assignment/user/logout");
         }
 
         function getCurrentUser() {
-            return $http.get("/api/assignment/loggedin");
+            return $http.get("/api/assignment/user/loggedin");
+        }
+
+        function isAdmin() {
+            return $http.get("/api/assignment/user/isAdmin");
         }
 
         function setCurrentUser(user) {
@@ -43,7 +48,7 @@
         }
 
         function login(credentials) {
-            return $http.post("/api/assignment/login", credentials);
+            return $http.post("/api/assignment/user/login", credentials);
         }
 
         function findAllUsers() {

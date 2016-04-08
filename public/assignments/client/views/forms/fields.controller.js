@@ -11,6 +11,7 @@
         vm.deleteField = deleteField;
         vm.openDiag = openDiag;
         vm.addField = addField;
+        vm.sortFields = sortFields;
 
         vm.serializeOptions = serializeOptions;
         vm.deserializeOptions = deserializeOptions;
@@ -195,8 +196,9 @@
             }
             FieldService
                 .createFieldForForm(vm.currentFormId,field)
-                .then(function(){
-                    loadAllFields();
+                .then(function(response){
+                    vm.currentForm = response.data;
+                    vm.fields = angular.copy(vm.currentForm.fields);
                 });
         }
 
@@ -234,7 +236,6 @@
                 .then(function(response) {
                     vm.currentForm = response.data;
                     vm.fields = angular.copy(vm.currentForm.fields);
-                    vm.fieldsFix = angular.copy(vm.currentForm.fields);
                 });
         }
 
@@ -246,16 +247,18 @@
 
             FieldService
                 .updateField(vm.currentFormId, vm.currentField._id, vm.currentField)
-                .then(function () {
-                    loadAllFields();
+                .then(function (response) {
+                    vm.currentForm = response.data;
+                    vm.fields = angular.copy(vm.currentForm.fields);
                 });
         }
 
         function addReplica(field) {
             FieldService
                 .createFieldForForm(vm.currentFormId,field)
-                .then(function(){
-                    loadAllFields();
+                .then(function(response){
+                    vm.currentForm = response.data;
+                    vm.fields = angular.copy(vm.currentForm.fields);
                 });
         }
 
@@ -283,29 +286,16 @@
         function deleteField(fieldId, formId) {
             FieldService
                 .deleteFieldFromForm(formId, fieldId)
-                .then(function(){
-                    loadAllFields();
+                .then(function(response){
+                    vm.currentForm = response.data;
+                    vm.fields = angular.copy(vm.currentForm.fields);
                 });
         }
 
-        setTimeout(function(){
-            $(".field-list").sortable({
-                connectWith: ".field-list",
-                handle: ".handler",
-                update: function (event, ui) {
-                    var idsInOrder = $(".field-list").sortable("toArray");
-                    var sortedfields = [];
-                    for (var i = 0; i < idsInOrder.length; i++) {
-                        sortedfields.push(vm.fieldsFix[idsInOrder[i]]);
-                    }
-                    vm.currentForm.fields = angular.copy(sortedfields);
-                    FormService
-                        .updateFormById(vm.currentFormId, vm.currentForm)
-                        .then(function (response) {
-                            vm.currentForm = response.data;
-                        })
-                }
-            }).disableSelection();
-        });
+        function sortFields(start, end) {
+            FieldService
+                .sortFields(vm.currentFormId, start, end)
+                .then(function(){});
+        }
     }
 })();

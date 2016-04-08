@@ -65,10 +65,9 @@
         var deferred = $q.defer();
 
         UserService
-            .getCurrentUser()
+            .isAdmin()
             .then(function(response) {
-                var currentUser = response.data;
-                if(currentUser && currentUser.roles.indexOf('admin')>-1) {
+                if(response.data) {
                     deferred.resolve();
                 } else {
                     deferred.reject();

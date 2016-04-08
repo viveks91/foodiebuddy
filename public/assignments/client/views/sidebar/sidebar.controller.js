@@ -4,7 +4,7 @@
         .module("FormBuilderApp")
         .controller("SidebarController", SidebarController);
 
-    function SidebarController($location){
+    function SidebarController($location, UserService){
         var vm = this;
 
         function init() {

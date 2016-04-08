@@ -2,10 +2,11 @@
 module.exports = function(app, userModel) {
     app.post("/api/assignment/user", register);
     app.post("/api/assignment/admin/add", adminAdd);
-    app.post("/api/assignment/logout", logout);
-    app.post("/api/assignment/login", login);
-    app.get("/api/assignment/loggedin", loggedin);
+    app.post("/api/assignment/user/logout", logout);
+    app.post("/api/assignment/user/login", login);
+    app.get("/api/assignment/user/loggedin", loggedin);
     app.get("/api/assignment/user", getAllUsers);
+    app.get("/api/assignment/user/isAdmin", isAdmin);
     app.get("/api/assignment/user/:id", findUserById);
     //app.get("/api/assignment/user?username=username", findUserByUsername);
     //app.get("/api/assignment/user?username=alice&password=wonderland", findUserByCredentials);
@@ -13,7 +14,13 @@ module.exports = function(app, userModel) {
     app.put("/api/assignment/admin/update/:id", adminUpdate);
     app.delete("/api/assignment/user/:id", deleteUser);
 
-    var uuid = require('uuid');
+    function isAdmin(req, res) {
+        if (req.session.currentUser != null) {
+            res.json(req.session.currentUser.roles.indexOf('admin')>-1);
+        } else {
+            res.json(false);
+        }
+    }
 
     function login(req, res) {
         var credentials = req.body;

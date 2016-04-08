@@ -5,6 +5,28 @@ module.exports = function(app, fieldModel) {
     app.delete("/api/assignment/form/:formId/field/:fieldId", deleteFieldById);
     app.post("/api/assignment/form/:formId/field", createField);
     app.put("/api/assignment/form/:formId/field/:fieldId", updateField);
+    app.put("/api/assignment/form/:formId/field", updateFields);
+
+    function updateFields (req, res) {
+        var formId = req.params.formId;
+        var startIndex = null;
+        var startIndex = req.query.startIndex;
+        var endIndex = null;
+        var endIndex = req.query.endIndex;
+
+        if(startIndex != null && endIndex != null) {
+            fieldModel
+                .sortFields(formId, startIndex, endIndex)
+                .then(
+                    function(stat) {
+                        return res.json(200);
+                    },
+                    function(err) {
+                        res.status(400).send(err);
+                    }
+                );
+        }
+    }
 
     function updateField(req, res) {
         var formId = req.params.formId;
@@ -44,8 +66,8 @@ module.exports = function(app, fieldModel) {
         fieldModel
             .deleteField(fieldId, formId)
             .then(
-                function (newField) {
-                    res.send(204);
+                function (updatedForm) {
+                    res.json(updatedForm);
                 },
                 function (err) {
                     res.status(400).send(err);

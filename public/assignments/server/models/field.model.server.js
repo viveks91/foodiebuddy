@@ -8,27 +8,49 @@ module.exports = function(db, mongoose) {
     var FormModel = mongoose.model('FormField', FormSchema);
     var FieldModel = mongoose.model('Field', FieldSchema);
 
+    var keys = ["label", "placeholder", "type", "options"];
+
 
     var api = {
         findFieldsByFormId: findFieldsByFormId,
         findFieldById: findFieldById,
         deleteField: deleteField,
         createField: createField,
-        updateField: updateField
+        updateField: updateField,
+        sortFields: sortFields
     };
     return api;
 
-    function updateField(updatedField, fieldId, formId) {
-        return FormModel.findOneAndUpdate(
-            { "_id": formId, "fields._id": fieldId },
-            {
-                "$set": {
-                    "fields.$": updatedField,
-                    "updated": Date.now()
+    function sortFields(formId, startIndex, endIndex) {
+        return FormModel
+            .findById(formId)
+            .then(
+                function(form) {
+                    form.fields.splice(endIndex, 0, form.fields.splice(startIndex, 1)[0]);
+
+                    // notify mongoose 'pages' field changed
+                    form.markModified("fields");
+                    form.save();
                 }
-            },
-            {safe: true, upsert: true, new: true}
-        );
+            );
+    }
+
+    function updateField(updatedField, fieldId, formId) {
+        return FormModel
+            .findById(formId)
+            .then(
+                function(form){
+                    var field = form.fields.id(fieldId);
+                    for (var i = 0; i < keys.length; i++) {
+                        var key = keys[i];
+                        if (typeof updatedField[key] !== 'undefined' && updatedField[key] !== null) {
+                            field[key] = updatedField[key];
+                        }
+                    }
+                    form['updated'] = Date.now();
+                    return form.save();
+                }
+            );
     }
 
     function createField(field, formId) {
@@ -49,18 +71,15 @@ module.exports = function(db, mongoose) {
 
     function deleteField(fieldId, formId) {
 
-        return FormModel.findByIdAndUpdate(
-            formId,
-            {
-                "$pull": {
-                    "fields": {"_id": fieldId}
-                },
-                "$set": {
-                    "updated": Date.now()
+        return FormModel
+            .findById(formId)
+            .then(
+                function(form){
+                    form.fields.id(fieldId).remove();
+                    form['updated'] = Date.now();
+                    return form.save();
                 }
-            },
-            {new: true}
-        );
+            );
     }
 
     function findFieldsByFormId(formId) {
