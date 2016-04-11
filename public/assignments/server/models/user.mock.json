@@ -25,32 +25,5 @@
     "email": [],
     "roles": ["admin"],
     "phones": []
-  },
-  {
-    "firstName": "Charlie",
-    "lastName": "Brown",
-    "username": "charlie",
-    "password": "charlie",
-    "email": [],
-    "roles": ["staff"],
-    "phones": []
-  },
-  {
-    "firstName": "Dan",
-    "lastName": "Craig",
-    "username": "dan",
-    "password": "dan",
-    "email": [],
-    "roles": ["staff", "user"],
-    "phones": []
-  },
-  {
-    "firstName": "Edward",
-    "lastName": "Norton",
-    "username": "ed",
-    "password": "ed",
-    "email": [],
-    "roles": ["user"],
-    "phones": []
   }
 ]

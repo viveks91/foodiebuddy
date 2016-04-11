@@ -15,12 +15,12 @@
                 .then(function(response) {
                     vm.user = response.data;
                     vm.user['email'] = vm.user['email'].toString();
+                    vm.user['password'] = "";
                 })
         }
         init();
 
         function updateUser(newUser) {
-            newUser['email'] = newUser['email'].split(",");
             UserService
                 .updateUser(newUser._id, newUser)
                 .then(function(response){

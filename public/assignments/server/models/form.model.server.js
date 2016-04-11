@@ -1,39 +1,9 @@
 "use strict";
-var mock = require("./form.mock.json");
 module.exports = function(db, mongoose) {
 
     var FormSchema = require("./form.schema.server.js")(mongoose);
-    var UserSchema = require("./user.schema.server.js")(mongoose);
 
     var FormModel = mongoose.model('Form', FormSchema);
-    var UserModel = mongoose.model('UserTemp', UserSchema);
-
-    // Mock data load
-    function init() {
-        var aliceId = null;
-        var bobId = null;
-
-        UserModel
-            .find({username: "alice"})
-            .then(function(user){
-                mock[0]['userId'] = user[0]._id;
-                return UserModel.find({username: "bob"});
-            })
-            .then(function(user){
-                    mock[1]['userId'] = user[0]._id;
-
-                    for (var i=0; i< mock.length; i++) {
-                        var query = FormModel.findOneAndUpdate(
-                            {title: mock[i].title, userId: mock[i].userId},
-                            mock[i],
-                            {upsert: true}
-                        );
-                        query.exec();
-                    }
-                }
-            );
-    }
-    init();
 
     var api = {
         createForm: createForm,

@@ -13,21 +13,20 @@
         init();
 
         function register() {
-            var repassword = vm.repassword;
-            if (vm.curUser.password != repassword) {
+            if (vm.curUser.password != vm.repassword || !vm.repassword || !vm.curUser.password) {
                 alert("Passwords dont match!");
                 return;
             }
-            vm.curUser["firstName"] = null;
-            vm.curUser["lastName"] = null;
-            vm.curUser["roles"] = [];
-            vm.curUser["email"] = vm.curUser["email"].split(",");
+
             UserService
-                .createUser(vm.curUser)
+                .register(vm.curUser)
                 .then(function(response){
-                    if(response.data) {
+                    var user = response.data;
+                    if(user) {
                         UserService.setCurrentUser(response.data);
                         vm.$location.url("/profile");
+                    } else {
+                        alert("Username already exits");
                     }
                 })
         }

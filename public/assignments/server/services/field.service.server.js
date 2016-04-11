@@ -1,11 +1,11 @@
 "use strict";
 module.exports = function(app, fieldModel) {
-    app.get("/api/assignment/form/:formId/field", getFieldsByFormId);
-    app.get("/api/assignment/form/:formId/field/:fieldId", getFieldById);
-    app.delete("/api/assignment/form/:formId/field/:fieldId", deleteFieldById);
-    app.post("/api/assignment/form/:formId/field", createField);
-    app.put("/api/assignment/form/:formId/field/:fieldId", updateField);
-    app.put("/api/assignment/form/:formId/field", updateFields);
+    app.get(    "/api/assignment/form/:formId/field",          getFieldsByFormId );
+    app.get(    "/api/assignment/form/:formId/field/:fieldId", getFieldById      );
+    app.delete( "/api/assignment/form/:formId/field/:fieldId", deleteFieldById   );
+    app.post(   "/api/assignment/form/:formId/field",          createField       );
+    app.put(    "/api/assignment/form/:formId/field/:fieldId", updateField       );
+    app.put(    "/api/assignment/form/:formId/field",          updateFields      );
 
     function updateFields (req, res) {
         var formId = req.params.formId;

@@ -10,7 +10,7 @@
             findUserByUsername:findUserByUsername,
             findUserByCredentials: findUserByCredentials,
             findAllUsers: findAllUsers,
-            createUser: createUser,
+            register: register,
             deleteUserById: deleteUserById,
             updateUser: updateUser,
             getCurrentUser: getCurrentUser,
@@ -19,7 +19,7 @@
             adminAdd: adminAdd,
             adminUpdate: adminUpdate,
             login: login,
-            isAdmin: isAdmin
+            adminDelete:adminDelete
         };
         return api;
 
@@ -29,10 +29,6 @@
 
         function getCurrentUser() {
             return $http.get("/api/assignment/user/loggedin");
-        }
-
-        function isAdmin() {
-            return $http.get("/api/assignment/user/isAdmin");
         }
 
         function setCurrentUser(user) {
@@ -52,11 +48,11 @@
         }
 
         function findAllUsers() {
-            return $http.get("/api/assignment/user");
+            return $http.get("/api/assignment/admin/user");
         }
 
-        function createUser(user) {
-            return $http.post("/api/assignment/user", user);
+        function register(user) {
+            return $http.post("/api/assignment/user/register", user);
         }
 
         function deleteUserById(userId) {
@@ -68,11 +64,15 @@
         }
 
         function adminAdd(user) {
-            return $http.post("/api/assignment/admin/add", user);
+            return $http.post("/api/assignment/admin/user", user);
         }
 
         function adminUpdate(userId, user) {
-            return $http.put("/api/assignment/admin/update/"+userId, user);
+            return $http.put("/api/assignment/admin/user/"+userId, user);
+        }
+
+        function adminDelete(userId) {
+            return $http.delete("/api/assignment/admin/user/"+userId);
         }
     }
 })();

@@ -4,7 +4,7 @@
         .module("FormBuilderApp")
         .controller("AdminController", AdminController);
 
-    function AdminController(UserService){
+    function AdminController($scope, UserService){
         var vm = this;
 
         vm.loadAllUsers = loadAllUsers;
@@ -26,8 +26,18 @@
             UserService
                 .findAllUsers()
                 .then(function(response) {
+                    console.log(response.data);
                     vm.allUsers = angular.copy(response.data);
                 });
+        }
+
+        function handleSuccess(response) {
+            vm.edit = {};
+            vm.allUsers = response.data;
+        }
+
+        function handleError(error) {
+            $scope.error = error;
         }
 
         function addUser(newUser) {
@@ -35,45 +45,31 @@
             if (Object.keys(newUser).length == 0) {
                 return;
             }
-            newUser.firstName = null;
-            newUser.secondName = null;
-            newUser.email = null;
-            if (!Array.isArray(newUser.roles)) {
-                newUser.roles = newUser.roles.replace(/\s+/g, '').split(',');
-            }
+
             UserService
                 .adminAdd(newUser)
-                .then(function(response){
-                    vm.edit = {};
-                    vm.allUsers = response.data;
-                });
+                .then(handleSuccess, handleError);
         }
 
         function updateUser(newUser) {
             if (Object.keys(newUser).length == 0) {
                 return;
             }
-            if (!Array.isArray(newUser.roles)) {
-                newUser.roles = newUser.roles.replace(/\s+/g, '').split(',');
-            }
+
             UserService
                 .adminUpdate(newUser._id, newUser)
-                .then(function(response){
-                    vm.edit = {};
-                    vm.allUsers = response.data;
-                });
+                .then(handleSuccess, handleError);
         }
 
         function removeUser(userId) {
             UserService
-                .deleteUserById(userId)
-                .then(function(){
-                });
-            loadAllUsers();
+                .adminDelete(userId)
+                .then(handleSuccess, handleError);
         }
 
         function editUser(selected) {
             vm.edit = angular.copy(selected);
+            vm.edit.password = "";
         }
     }
 })();

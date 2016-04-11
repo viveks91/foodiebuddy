@@ -9,7 +9,15 @@ module.exports = function(mongoose) {
         lastName: String,
         email: [String],
         roles: [String],
-        phones: [String]
+        phones: [String],
+        google: {
+            id:    String,
+            token: String
+        },
+        facebook: {
+            id:    String,
+            token: String
+        }
     }, {collection: 'assignment.users'});
 
     UserSchema.index({ username: 1, password: 1 });

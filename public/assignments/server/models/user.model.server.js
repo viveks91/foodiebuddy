@@ -1,9 +1,5 @@
 "use strict";
 
-// load q promise library
-var q = require("q");
-var mock = require("./user.mock.json");
-
 module.exports = function(db, mongoose) {
 
     // load user schema
@@ -12,19 +8,6 @@ module.exports = function(db, mongoose) {
     // create user model from schema
     var UserModel = mongoose.model('User', UserSchema);
 
-    // Mock data load
-    function init() {
-        for (var i=0; i< mock.length; i++){
-            var query = UserModel.findOneAndUpdate(
-                {username: mock[i].username},
-                mock[i],
-                {upsert: true}
-            );
-            query.exec();
-        }
-    }
-    init();
-
     var api = {
         findUserByCredentials: findUserByCredentials,
         createUser: createUser,
@@ -32,31 +15,31 @@ module.exports = function(db, mongoose) {
         findUsersByIds: findUsersByIds,
         findAllUsers: findAllUsers,
         updateUser: updateUser,
-        deleteUser: deleteUser,
-        findUserByUsername: findUserByUsername
+        removeUser: removeUser,
+        findUserByUsername: findUserByUsername,
+        findUserByFacebookId: findUserByFacebookId,
+        findUserByGoogleId: findUserByGoogleId
     };
     return api;
 
+    function findUserByFacebookId(facebookId) {
+        return UserModel.findOne({'facebook.id': facebookId});
+    }
+
+    function findUserByGoogleId(googleId) {
+        return UserModel.findOne({'google.id': googleId});
+    }
+
     function findAllUsers() {
-        var deferred = q.defer();
-
-        UserModel.find(function (err, users) {
-            if (err) {
-                deferred.reject(err);
-            } else {
-                deferred.resolve(users);
-            }
-        });
-
-        return deferred.promise;
+        return UserModel.find();
     }
 
     function updateUser(userId, updatedUser) {
         delete updatedUser['_id'];
-        return UserModel.findOneAndUpdate(userId, updatedUser, {new: true});
+        return UserModel.findByIdAndUpdate(userId, updatedUser, {new: true});
     }
 
-    function deleteUser(userId) {
+    function removeUser(userId) {
         return UserModel.findByIdAndRemove(userId);
     }
 
@@ -74,7 +57,11 @@ module.exports = function(db, mongoose) {
     }
 
     function findUserByCredentials(credentials) {
-        return UserModel.findOne(credentials);
+        return UserModel.findOne({
+                username: credentials.username,
+                password: credentials.password
+            }
+        );
     }
 
     function findUserByUsername(username) {

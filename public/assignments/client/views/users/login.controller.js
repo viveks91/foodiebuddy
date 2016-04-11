@@ -23,11 +23,13 @@
                 })
                 .then(function(response){
                     if(response.data) {
+                        console.log(response.data);
                         UserService.setCurrentUser(response.data);
                         vm.$location.url("/home");
-                    } else {
-                        alert("Invalid username or password");
                     }
+                },
+                function(err) {
+                    alert("Invalid username or password");
                 });
         }
     }
