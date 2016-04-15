@@ -26,7 +26,6 @@
             UserService
                 .findAllUsers()
                 .then(function(response) {
-                    console.log(response.data);
                     vm.allUsers = angular.copy(response.data);
                 });
         }

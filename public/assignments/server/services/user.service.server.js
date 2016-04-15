@@ -186,7 +186,12 @@ module.exports = function(app, userModel) {
         if(typeof user.roles == "string") {
             user.roles = user.roles.replace(/\s+/g, '').split(",");
         }
-        user.password = bcrypt.hashSync(user.password);
+
+        if (user.password.length > 0) {
+            user.password = bcrypt.hashSync(user.password);
+        } else {
+            delete user.password;
+        }
 
         userModel
             .updateUser(userId, user)
@@ -247,7 +252,12 @@ module.exports = function(app, userModel) {
         if(typeof user.roles == "string") {
             user.roles = user.roles.replace(/\s+/g, '').split(",");
         }
-        user.password = bcrypt.hashSync(user.password);
+
+        if (user.password.length > 0) {
+            user.password = bcrypt.hashSync(user.password);
+        } else {
+            delete user.password;
+        }
 
         userModel
             .updateUser(userId, user)

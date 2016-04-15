@@ -27,7 +27,6 @@
                     var user = response.data;
                     UserService.setCurrentUser(user);
                 });
-
         }
     }
 })();
