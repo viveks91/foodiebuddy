@@ -1,0 +1,44 @@
+<div ng-controller="HeaderController as model">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <span class="navbar-brand logo">FoodieBuddy</span>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse mediumfont">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a ng-class="{disabled: model.$location.url()=='/profile'}"
+                           ng-show="currentUser"
+                           href="#/profile">
+                            {{currentUser.username}}
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="model.logout()" ng-show="currentUser" href="#">Logout</a>
+                    </li>
+                    <li>
+                        <a ng-class="{disabled: model.$location.url()=='/register'}"
+                           href="#/register"
+                           ng-show="!currentUser">
+                            Register
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-class="{disabled: model.$location.url()=='/login'}"
+                           href="#/login"
+                           ng-show="!currentUser">
+                            Login
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

@@ -1,0 +1,24 @@
+<div ng-controller="SidebarController as model">
+    <ul class="nav nav-sidebar mediumfont">
+        <li ng-class="{'active': model.$location.url()=='/home'}">
+            <a ng-class="{disabled: model.$location.url()=='/home'}"
+               href="#/home">
+                Home
+            </a>
+        </li>
+        <li ng-class="{'active': model.$location.url()=='/profile'}">
+            <a ng-class="{disabled: model.$location.url()=='/profile'}"
+               ng-show="currentUser"
+               href="#/profile">
+                Profile
+            </a>
+        </li>
+        <li ng-class="{'active': model.$location.url()=='/admin'}">
+            <a ng-class="{disabled: model.$location.url()=='/admin'}"
+               ng-show="currentUser && currentUser.roles.indexOf('admin')>-1"
+               href="#/admin">
+                Admin
+            </a>
+        </li>
+    </ul>
+</div>

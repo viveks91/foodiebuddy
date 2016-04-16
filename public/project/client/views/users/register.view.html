@@ -1,0 +1,33 @@
+<h1 class="page-header">Register</h1>
+<form class="form-horizontal" role="form" >
+    <div class="form-group form-group-lg">
+        <label class="col-sm-3 control-label">Username</label>
+        <div class="col-sm-9">
+            <INPUT ng-model="model.curUser.username" TYPE="text" placeholder="Enter a username" class="form-control" maxlength="225">
+        </div>
+    </div>
+
+    <div class="form-group form-group-lg">
+        <label class="col-sm-3 control-label">Password</label>
+        <div class="col-sm-9">
+            <INPUT ng-model="model.curUser.password" TYPE="password" placeholder="Enter a password" class="form-control" maxlength="225">
+        </div>
+    </div>
+
+    <div class="form-group form-group-lg">
+        <label class="col-sm-3 control-label">Verify Password</label>
+        <div class="col-sm-9">
+            <INPUT ng-model="model.repassword" TYPE="password" placeholder="Re-enter your password" class="form-control" maxlength="225">
+        </div>
+    </div>
+
+    <div class="form-group form-group-lg">
+        <label class="col-sm-3 control-label">Email</label>
+        <div class="col-sm-9">
+            <INPUT ng-model="model.curUser.email" TYPE="email" placeholder="Enter your email id" class="form-control" maxlength="225">
+            <hr>
+            <button id="create" class="btn btn-success btn-block mediumfont" ng-click="model.register()">Register</button>
+        </div>
+    </div>
+
+</form>

@@ -1,0 +1,10 @@
+[
+  {
+    "firstName": "root",
+    "lastName": "",
+    "username": "root",
+    "password": "root",
+    "email": [],
+    "roles": ["user", "admin"]
+  }
+]
