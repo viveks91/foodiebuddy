@@ -1,7 +1,6 @@
-//"use strict";
-//module.exports = function(app) {
-//    var UserModel = require("./assignments/server/models/user.model.server.js")(app);
-//
-//    require("./assignments/server/services/user.server.service.js")(app, UserModel);
-//};
+"use strict";
 
+module.exports = function(app, db, mongoose) {
+    require("./assignments/server/app.js")(app, db, mongoose);
+    require("./project/server/app.js")(app, db, mongoose);
+};
