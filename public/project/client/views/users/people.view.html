@@ -16,7 +16,7 @@
                 <div class="profile-top">
                     <img ng-src="{{model.user.image}}" alt="" height="120" width="120" style="background: white">
                     <div class="floater">
-                        <h4>{{model.user.firstName + " " + model.user.lastName}}</h4>
+                        <h4>{{(model.user.firstName || model.user.username) + " " + model.user.lastName}}</h4>
                         <h5>Some status</h5>
                         <button ng-if="currentUser.following.indexOf(model.user.username) == -1" ng-click="model.follow()" class="btn btn-info"><span class="fa fa-user-plus" style="margin-right: 0.6em"></span>Follow</button>
                         <button ng-if="currentUser.following.indexOf(model.user.username) != -1" ng-click="model.unfollow()" class="btn btn-default"><span class="fa fa-user-times" style="margin-right: 0.6em"></span>Unfollow</button>

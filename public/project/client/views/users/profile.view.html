@@ -23,7 +23,7 @@
                     <div class="profile-top">
                         <img ng-src="{{model.user.image}}" alt="" height="120" width="120" style="background: white">
                         <div class="floater">
-                            <h4>{{model.user.firstName + " " + model.user.lastName}}</h4>
+                            <h4>{{(model.user.firstName || model.user.username) + " " + model.user.lastName }}</h4>
                             <h5>Some status</h5>
                         </div>
                         <div class="clearfix"></div>

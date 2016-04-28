@@ -1,7 +1,7 @@
 
 <div id="page-wrapper">
     <div class="main-page">
-        <h3 class="title1" style="margin-bottom: 1em">Welcome, {{model.user.firstName}}!</h3>
+        <h3 class="title1" style="margin-bottom: 1em">Welcome, {{model.user.firstName || model.user.username}}!</h3>
         <div class="forms">
             <h4 style="margin: 1em" ng-if="model.posts.length == 0">
                 You have no posts to see
