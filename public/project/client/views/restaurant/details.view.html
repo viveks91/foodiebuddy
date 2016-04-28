@@ -167,7 +167,7 @@
 
                 <div class="scrollbar scrollbar1">
 
-                    <h4 ng-if="model.reservations.length == 0" style="margin: 1em 1em;"> No reservations</h4>
+                    <h4 ng-if="model.reservations.length == 0" style="margin: 1em 1em; text-align: center"> No reservations</h4>
                     <div class="follpanels" ng-repeat="reservation in model.reservations" style="padding: 0 1em;float: left; text-align: left">
                         <div ng-click="model.href(reservation.username)" style="float: left; cursor: pointer">
                             <img ng-src="{{reservation.image}}" alt="" height="100" width="100" style="background: white; margin: 0.5em 0;">
@@ -220,7 +220,7 @@
 
                 <div class="scrollbar scrollbar1">
 
-                    <h4 ng-if="model.reviews.length == 0" style="margin: 1em 1em;"> No reviews</h4>
+                    <h4 ng-if="model.reviews.length == 0" style="margin: 1em 1em; text-align: center"> No reviews</h4>
                     <div class="reviewpanels" ng-repeat="review in model.reviews" style="padding: 0 2em">
                         <div ng-click="model.href(review.username)" style="float: left; cursor: pointer">
                             <img ng-src="{{review.image}}" alt="" height="100" width="100" style="background: white">

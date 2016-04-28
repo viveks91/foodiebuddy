@@ -11,14 +11,14 @@
         vm.href= href;
 
         function init() {
-            vm.name = "";
-            vm.location = "";
             vm.$location = $location;
 
             var query = $routeParams.query;
 
             if (query) {
                 var parts = query.split("$");
+                vm.name = parts[0];
+                vm.location = parts[1];
                 search(parts[0],parts[1]);
             }
         }

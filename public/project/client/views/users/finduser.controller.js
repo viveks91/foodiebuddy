@@ -12,14 +12,15 @@
         vm.shref = shref;
 
         function init() {
-            vm.query1 = "";
-            vm.query2 = "";
             vm.$location = $location;
 
             var query = $routeParams.query;
 
             if (query) {
                 var parts = query.split("$");
+                vm.query1 = parts[0];
+                vm.query2 = parts[1];
+
                 search(parts[0],parts[1]);
             }
         }
