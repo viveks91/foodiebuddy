@@ -10,6 +10,7 @@ module.exports = function(mongoose) {
         email: [String],
         roles: [String],
         phones: [String],
+        type: {type: String, default: "assignment"},
         google: {
             id:    String,
             token: String

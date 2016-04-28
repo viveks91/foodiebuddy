@@ -1,8 +1,8 @@
 "use strict";
 var bcrypt = require('bcrypt-nodejs');
+var mongoose      = require('mongoose');
 
-module.exports = function(app, db, mongoose) {
-    var userModel = require("./models/user.model.server.js")(db, mongoose);
+module.exports = function(app, db, userModel) {
     var formModel = require("./models/form.model.server.js")(db, mongoose);
     var fieldModel = require("./models/field.model.server.js")(db, mongoose);
 

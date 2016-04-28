@@ -1,0 +1,239 @@
+
+<!-- main content start-->
+<div id="page-wrapper">
+    <div class="main-page">
+        <div class="elements  row">
+            <div class="col-md-12 profile profile3 widget-shadow chat-right-grid" style="margin-bottom: 2em">
+                <div class="title3 title5">
+                    <div style="clear: both;">
+                        <h4>Restaurant Info
+                            <p ng-if="currentUser.affil == 'none'" href ng-click="model.addAffil()" class="pull-right">Affiliate with restuarant <span class="fa fa-sign-in"></span></p>
+                            <p ng-if="currentUser.affil == model.restaurant.rID" href ng-click="model.removeAffil()" class="pull-right">Remove affiliation <span class="fa fa-sign-in"></span></p>
+                        </h4>
+                    </div>
+                </div>
+                <div ng-if="!model.editInfo">
+                    <div class="profile-top profile-top1">
+                        <img class="image" ng-src="{{model.restaurant.image}}" alt="" height="150" width="150" style="border: 0 solid #F2B33F;border-radius: 0;box-shadow: 0 0 9px #444;">
+                        <div class="floater">
+                            <h4>
+                                {{model.restaurant.name}}
+                            </h4>
+                            <img ng-src="{{model.restaurant.ratingImage}}" alt="" width="150"  style="clear:right; margin: 1em 0;border: 0 solid #F2B33F;border-radius: 0;box-shadow: 0 0 0 #444;">
+                            <h5 style="clear:left; font-style: italic">"{{model.restaurant.snippet.substring(0, 68) + "..."}}"</h5>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="profile-text">
+                        <div class="profile-row">
+                            <div class="profile-left">
+                                <i class="fa fa-cutlery profile-icon"></i>
+                            </div>
+                            <div class="profile-right">
+                                <h4>{{model.restaurant.categories || "Not Available"}} </h4>
+                                <p>Categories</p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="profile-row row-middle row-middle1">
+                            <div class="profile-left">
+                                <i class="fa fa-mobile profile-icon"></i>
+                            </div>
+                            <div class="profile-right">
+                                <h4>{{model.restaurant.phone || "Not Available"}}</h4>
+                                <p>Contact Number</p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="profile-row row-down-middle row-down-middle1">
+                            <div class="profile-left">
+                                <i class="fa fa-map-marker profile-icon"></i>
+                            </div>
+                            <div class="profile-right">
+                                <h4>{{model.restaurant.address || "Not Available"}}</h4>
+                                <p>Address</p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="profile-row ">
+                            <div class="profile-left">
+                                <i class="fa fa-globe profile-icon"></i>
+                            </div>
+                            <div class="profile-right">
+                                <a target="_blank" ng-href="{{model.restaurant.url}}"><h4>{{model.restaurant.url.substring(0,98) + "..."}}</h4></a>
+                                <p>Website</p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+
+                    </div>
+                    <div class="profile-btm">
+                        <ul>
+                            <li>
+                                <h4>{{model.restaurant.favs.length}}</h4>
+                                <h5>Likes</h5>
+                            </li>
+                            <li ng-click="model.toggleFav(currentUser)" style="cursor: pointer">
+                                <h4 ng-if="currentUser.favs.indexOf(model.restaurant.rID) != -1"><span style="color: #d43f3a" class="fa fa-heart"></span></h4>
+                                <h5 ng-if="currentUser.favs.indexOf(model.restaurant.rID) == -1">Add To</h5>
+                                <h5 ng-if="currentUser.favs.indexOf(model.restaurant.rID) == -1">Favorites</h5>
+                                <h5 ng-if="currentUser.favs.indexOf(model.restaurant.rID) != -1">Added to Favorites</h5>
+                            </li>
+                            <li ng-click="model.selectReserv = !model.selectReserv" style="cursor: pointer">
+                                <h5 ng-if="!model.selectReserv">Make a reservation</h5>
+                                <h4 ng-if="model.selectReserv"><span style="color: #ac2925" class="fa fa-times"></span></h4>
+                                <h5 ng-if="model.selectReserv">Cancel / Close</h5>
+                                <h5 ng-if="!model.selectReserv">Here</h5>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="model.selectReserv" class="col-md-12 profile profile3 widget-shadow chat-right-grid">
+                <h3 class="title1" style="margin: 0.6em 0.8em">Make a reservation </h3>
+                <div class="form-three widget-shadow">
+                    <form class="form-horizontal" style="font-size: 1.1em">
+                        <div class="form-group">
+                            <label for="focusedinput" class="col-sm-2 control-label">Your name</label>
+                            <div class="col-sm-8">
+                                <input ng-model="model.userName" disabled="" type="text" class="form-control1" id="focusedinput" >
+                            </div>
+                            <!--<div class="col-sm-2">-->
+                            <!--<p class="help-block">Your help text!</p>-->
+                            <!--</div>-->
+                        </div>
+                        <div class="form-group">
+                            <label for="disabledinput" class="col-sm-2 control-label">Restaurant</label>
+                            <div class="col-sm-8">
+                                <textarea ng-model="model.restaurantName" disabled="" name="txtarea1" id="disabledinput" cols="50" rows="4" class="form-control1"></textarea>
+                                <!--<input disabled="" type="text" class="form-control1" id="disabledinput" placeholder="{{}}">-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Number of guests</label>
+                            <div class="col-sm-8">
+                                <select ng-model="model.reserv.guests" multiple="" class="form-control1">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <p class="help-block">Table size</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword" class="col-sm-2 control-label">Date</label>
+                            <div class="col-sm-8">
+                                <input ng-model="model.reserv.date" type="date" class="form-control1" id="inputPassword" placeholder="Enter a date" min="{{model.date}}" required >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Time slot</label>
+                            <div class="col-sm-8">
+                                <select ng-model="model.reserv.timeSlot" multiple="" class="form-control1">
+                                    <option> 06:00PM to 07:00PM</option>
+                                    <option> 07:00PM to 08:00PM</option>
+                                    <option> 08:00PM to 09:00PM</option>
+                                    <option> 09:00PM to 10:00PM</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <p class="help-block">Fixed time slots</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">All set?</label>
+                            <div class="col-sm-6">
+                                <button type="submit" class="reservation-btn" ng-click="model.makeReserv(model.reserv)">Submit</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <p style="color: #d43f3a;" class="help-block">{{model.errorMsg}}</p>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div ng-if="model.reservations" class="col-md-12 profile profile3 widget-shadow chat-right-grid">
+                <h4 class="title3">Active Reservations</h4>
+
+                <div class="scrollbar scrollbar1">
+
+                    <h4 ng-if="model.reservations.length == 0" style="margin: 1em 1em;"> No reservations</h4>
+                    <div class="follpanels" ng-repeat="reservation in model.reservations" style="padding: 0 1em;float: left; text-align: left">
+                        <div ng-click="model.href(reservation.username)" style="float: left; cursor: pointer">
+                            <img ng-src="{{reservation.image}}" alt="" height="100" width="100" style="background: white; margin: 0.5em 0;">
+                        </div>
+                        <div style="float: left; margin: 1.4em 0 0 1em">
+                            <h3 >{{reservation.name}}</h3>
+                            <h3 style="font-size: 1.2em; margin-top: 0.2em; font-size: 1.1em">{{reservation.rDate}}</h3>
+                            <h3 style="font-size: 1.2em; margin-top: 0.2em; font-size: 1.1em">{{reservation.timeSlot}}</h3>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-12 profile profile3 widget-shadow chat-right-grid">
+                <h4 class="title3 title4">Reviews
+                    <!--<p href ng-click="" class="pull-right">More <span class="fa fa-chevron-right"></span></p>-->
+                    <p ng-if="!model.writeReview" href ng-click="model.writeReview = !model.writeReview" class="pull-right" style="margin-right: 1em">Write a review <span class="fa  fa-pencil"></span></p>
+                    <p ng-if="model.writeReview" href ng-click="model.writeReview = !model.writeReview" class="pull-right" style="margin-right: 1em">Cancel <span class="fa  fa-times"></span></p>
+                </h4>
+
+                <div ng-if="model.writeReview" class="form-three widget-shadow">
+                    <form class="form-horizontal" style="font-size: 1.1em">
+                        <div class="form-group">
+                            <label for="disabledinput" class="col-sm-2 control-label">Review</label>
+                            <div class="col-sm-8">
+                                <textarea ng-model="model.newReview.body" placeholder="Write a review here" name="txtarea1" id="disabledinput" cols="50" rows="4" class="form-control1"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Rating</label>
+                            <div class="col-sm-8">
+                                <select ng-model="model.newReview.rating" multiple="" class="form-control1">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-6">
+                                <button type="submit" class="reservation-btn" ng-click="model.addReview(model.newReview)">Submit</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="scrollbar scrollbar1">
+
+                    <h4 ng-if="model.reviews.length == 0" style="margin: 1em 1em;"> No reviews</h4>
+                    <div class="reviewpanels" ng-repeat="review in model.reviews" style="padding: 0 2em">
+                        <div ng-click="model.href(review.username)" style="float: left; cursor: pointer">
+                            <img ng-src="{{review.image}}" alt="" height="100" width="100" style="background: white">
+                        </div>
+                        <div style="float: left; margin: 1.4em 0 0 1em">
+                            <h3 >{{review.name}}   (<i style="font-size: 0.9em">Rating: {{review.rating}}</i>)</h3>
+                            <h3 style="font-size: 1.2em; margin-top: 0.6em">"{{review.body}}"</h3>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>

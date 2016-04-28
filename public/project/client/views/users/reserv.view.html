@@ -1,0 +1,32 @@
+<div id="page-wrapper">
+    <div class="main-page">
+        <h3 class="title1">My Reservations </h3>
+        <div class="forms">
+
+            <h4 style="margin: 1.3em" ng-if="model.reservations.length == 0">
+                You have no reservations
+            </h4>
+
+            <div ng-if="model.normalized.length != 0" class="elements  row" style="margin-top: 1.5em">
+                <div class="col-sm-12 col-lg-6 profile profile2 widget-shadow search-grid" ng-repeat="reserv in model.reservations" style="padding-right: 1em">
+                        <div ng-click="model.href(reserv.rID)" style="width: 180px; height: 170px; float: left; padding-left: 0.8em; background: #f7f7f7; margin-right: 1em">
+                            <img class="image" ng-src="{{reserv.rImage}}" alt="" height="135" width="135">
+                        </div>
+                        <div style="padding-top: 0.8em;">
+                            <h3 ng-click="model.href(reserv.rID)" style="font-size: 1.6em">{{reserv.rName}}</h3>
+                            <h4 ng-click="model.href(reserv.rID)" style="padding-top: 0.5em; font-size: 1.1em">Booked for {{reserv.guests}} people</h4>
+                            <h4 ng-click="model.href(reserv.rID)" style="padding-top: 0.5em; font-size: 1.1em">On <strong>{{reserv.rDate}}</strong> , {{reserv.timeSlot}}</h4>
+                            <button ng-if="!reserv.hasOccurred" class="btn btn-default" ng-click="model.cancelReserv(reserv._id)" style="padding: 0.1em 2em; font-size: 1em; background: #d43f3a; margin-top: 1em">
+                                <span class="fa fa-times" style="margin-right: 0.6em"></span>Cancel
+                            </button>
+                            <button ng-if="reserv.hasOccurred" class="btn btn-default" ng-click="model.cancelReserv(reserv._id)" style="padding: 0.1em 2em; font-size: 1em; background: #333333; margin-top: 1em">
+                                <span class="fa fa-trash" style="margin-right: 0.6em"></span>Delete
+                            </button>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

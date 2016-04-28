@@ -11,7 +11,7 @@ module.exports = function(app, userModel) {
     var auth = authorized;
     var authAdmin = isAdmin;
 
-    app.post("/api/assignment/user/login",     passport.authenticate('local'), login);
+    app.post("/api/assignment/user/login",     passport.authenticate('assignment'), login);
     app.post("/api/assignment/user/register",  register  );
     app.post("/api/assignment/user/logout",    logout    );
     app.get ("/api/assignment/user/loggedin",  loggedin  );
@@ -25,12 +25,9 @@ module.exports = function(app, userModel) {
     app.put   ("/api/assignment/user/:userId", auth,  updateUser    );
     app.delete("/api/assignment/user/:userId", auth,  deleteUser    );
 
-    //app.get("/api/assignment/user?username=username", findUserByUsername);
-    //app.get("/api/assignment/user?username=alice&password=wonderland", findUserByCredentials);
-
-    passport.use(new LocalStrategy(localStrategy));
-    passport.serializeUser(serializeUser);
-    passport.deserializeUser(deserializeUser);
+    passport.use('assignment', new LocalStrategy(localStrategy));
+    //passport.serializeUser(serializeUser);
+    //passport.deserializeUser(deserializeUser);
 
     function authorized (req, res, next) {
         if (!req.isAuthenticated()) {

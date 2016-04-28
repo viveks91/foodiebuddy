@@ -1,0 +1,31 @@
+<div id="page-wrapper">
+    <div class="main-page">
+        <div class="forms">
+            <h3 class="title1">Find People</h3>
+            <div style="margin: 0.8em 0;">
+                <input type="text" class="form-control" id="exampleInputName2" ng-model="model.query1" style="padding: 1.239em 0.5em; font-size: 1.2em; width: 34%; float:left" placeholder="First name">
+                <input type="text" class="form-control" id="exampleInputName3" ng-model="model.query2" style="padding: 1.239em 0.5em; font-size: 1.2em; width: 34%; float:left" placeholder="Last name">
+                <button class="btn btn-success" ng-click="model.shref(model.query1,model.query2)">Search</button>
+            </div>
+
+            <h4 style="margin: 1em" ng-if="model.results.length == 0">
+                No users found.
+            </h4>
+            <div ng-if="model.results.length != 0" class="elements  row" style="margin-top: 1em">
+                <div class="col-sm-12 col-lg-6 profile profile1 widget-shadow follow-grid" ng-repeat="user in model.results">
+                    <div ng-click="model.href(user.username)">
+                        <img ng-src="{{user.image}}" alt="" height="100" width="100" style="background: white">
+                        <div class="floater" style="text-align: center; margin-top: 1em">
+                            <div style="margin-bottom: 0.7em">
+                                <h3 style="float: left;">{{user.firstName}}</h3>
+                                <h3 style="float: left; clear: right; margin-left: 0.6em">{{user.lastName}}</h3>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

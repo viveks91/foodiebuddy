@@ -1,10 +1,235 @@
-<center><h1 class="form-signin-heading">Login</h1></center>
-<div class="container">
 
-    <form class="form-signin">
-        <input ng-model="model.username" type="text" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
-        <input ng-model="model.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <button class="btn btn-lg btn-primary btn-block" ng-click="model.login()">Login</button>
-    </form>
+<!--- Header Starts Here --->
+<div class="header">
+	<div class="container">
+		<!--<p>asdasd</p>-->
+		<div class="logo1">
+			<a href="#/login"><img src="/project/client/images/logo.png" alt=""></a>
+		</div>
 
+		<div class="clearfix"></div>
+		<div class="col-md-12">
+			<div class="header-bottom">
+				<p>Meet your favorite</p>
+				<h1>Foodies</h1>
+				<!--<a href="#">Get Started</a>-->
+			</div>
+
+			<div class="logmod pull-right ">
+				<div class="logmod__wrapper">
+					<!--<span class="logmod__close">Close</span>-->
+					<div class="logmod__container">
+						<ul class="logmod__tabs">
+							<li data-tabtar="lgm-2"><a href="#">Login</a></li>
+							<li data-tabtar="lgm-1"><a href="#">Sign Up</a></li>
+						</ul>
+						<div class="logmod__tab-wrapper">
+							<div class="logmod__tab lgm-1">
+								<!--<div class="logmod__heading">-->
+								<!--<span class="logmod__heading-subtitle">Enter your personal details <strong>to create an acount</strong></span>-->
+								<!--</div>-->
+								<div class="logmod__form">
+									<form accept-charset="utf-8" action="#" class="simform">
+										<div class="sminputs">
+											<div class="input full">
+												<!--<label class="string optional" for="user-name">Email*</label>-->
+												<input ng-model="model.curUser.username" class="string optional" maxlength="255" id="username" placeholder="Username" type="text" size="50" />
+											</div>
+										</div>
+										<div class="sminputs">
+											<div class="input string optional">
+												<!--<label class="string optional" for="user-pw">Password *</label>-->
+												<input ng-model="model.curUser.password" class="string optional" maxlength="255" id="user-pw" placeholder="Password" type="password" size="50" />
+											</div>
+											<div class="input string optional">
+												<!--<label class="string optional" for="user-pw-repeat">Repeat password *</label>-->
+												<input ng-model="model.repassword" class="string optional" maxlength="255" id="user-pw-repeat" placeholder="Repeat password" type="password" size="50" />
+											</div>
+										</div>
+										<div class="sminputs">
+											<div class="input full">
+												<!--<label class="string optional" for="user-name">Email*</label>-->
+												<input ng-model="model.curUser.email" class="string optional" maxlength="255" id="user-email" placeholder="Email" type="email" size="50" />
+											</div>
+										</div>
+										<div class="simform__actions submit" ng-click="model.register(model.curUser)">
+											<span class="sumbit" name="commit"> <strong>Create Account</strong></span>
+											<!--<span class="simform__actions-sidetext">By creating an account you agree to our <a class="special" href="#" target="_blank" role="link">Terms & Privacy</a></span>-->
+										</div>
+									</form>
+								</div>
+								<div class="logmod__alter">
+									<div class="logmod__alter-container">
+										<a href="/auth/facebook" class="connect facebook">
+											<div class="connect__icon">
+												<i class="fa fa-facebook"></i>
+											</div>
+											<div class="connect__context">
+												<span>Sign in with <strong>Facebook</strong></span>
+											</div>
+										</a>
+										<a href="/auth/google" class="connect googleplus">
+											<div class="connect__icon">
+												<i class="fa fa-google-plus"></i>
+											</div>
+											<div class="connect__context">
+												<span>Sign in with <strong>Google+</strong></span>
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="logmod__tab lgm-2">
+								<!--<div class="logmod__heading">-->
+								<!--<span class="logmod__heading-subtitle">Enter your email and password <strong>to sign in</strong></span>-->
+								<!--</div>-->
+								<div class="logmod__form">
+									<form accept-charset="utf-8" action="#" class="simform">
+										<div class="sminputs">
+											<div class="input full">
+												<!--<label class="string optional" for="user-name">Email*</label>-->
+												<input ng-model="model.credentials.username" maxlength="255" id="user-name" placeholder="Email" type="text" size="50" />
+											</div>
+										</div>
+										<div class="sminputs">
+											<div class="input full">
+												<!--<label class="string optional" for="user-pw">Password *</label>-->
+												<input ng-model="model.credentials.password" maxlength="255" id="user-pw" placeholder="Password" type="password" size="50" />
+												<span class="hide-password">Show</span>
+											</div>
+										</div>
+										<div class="simform__actions connect__context" ng-click="model.login(model.credentials)">
+											<span class="sumbit" name="commit"> <strong>Log In</strong></span>
+											<!--<input class="sumbit" name="commit" type="sumbit" value="Log In" />-->
+										</div>
+										<!--<div class="simform__actions">-->
+										<!--<input class="sumbit" name="commit" type="sumbit" value="Log In" />-->
+										<!--<span class="simform__actions-sidetext"><a class="special" role="link" href="#">Forgot your password?<br>Click here</a></span>-->
+										<!--</div>-->
+									</form>
+								</div>
+								<div class="logmod__alter">
+									<div class="logmod__alter-container">
+										<a href="/auth/facebook" class="connect facebook">
+											<div class="connect__icon">
+												<i class="fa fa-facebook"></i>
+											</div>
+											<div class="connect__context">
+												<span>Sign in with <strong>Facebook</strong></span>
+											</div>
+										</a>
+										<a href="/auth/google" class="connect googleplus">
+											<div class="connect__icon">
+												<i class="fa fa-google-plus"></i>
+											</div>
+											<div class="connect__context">
+												<span>Sign in with <strong>Google+</strong></span>
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+		</div>
+
+	</div>
 </div>
+<!--- Header Ends Here --->
+<!-- Aboutus Starts Here --->
+<div class="aboutus" id="about">
+	<div class="container">
+		<div class="row aboutus-row">
+			<div class="col-md-4 aboutus-row-column">
+				<i class="icon1"></i>
+				<h3>GET INSPIRED</h3>
+				<!--<p>Lorem ipsum dolor sit amet, consectetur adipisc Pellentesque vel enim a elit viverra elementuma.Aliquam erat volutpat. </p>-->
+			</div>
+			<div class="col-md-4 aboutus-row-column">
+				<i class="icon2"></i>
+				<h3>GET LOCATION</h3>
+				<!--<p>Lorem ipsum dolor sit amet, consectetur adipisc Pellentesque vel enim a elit viverra elementuma.Aliquam erat volutpat. </p>-->
+			</div>
+			<div class="col-md-4 aboutus-row-column">
+				<i class="icon3"></i>
+				<h3>GET SOCIAL</h3>
+				<!--<p>Lorem ipsum dolor sit amet, consectetur adipisc Pellentesque vel enim a elit viverra elementuma.Aliquam erat volutpat. </p>-->
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+<!-- Aboutus Ends Here --->
+
+<!--- Slider Starts Here --->
+<div class="slider">
+	<div class="container">
+		<div class="slider-content">
+
+			<!-- Slideshow 4 -->
+			<div  id="top" class="callbacks_container">
+				<ul class="rslides" id="slider4">
+					<li>
+						<div class="slider-top">
+							<img src="/project/client/images/5.jpg" alt=""/>
+							<p class="first-slide">"Foods that provide all 9 essential amino acids are called complete protein foods. Animal food sources such as meat, fish, poultry, eggs, milk and cheese fall in this category."</p>
+							<p class="below">Food Trivia</p>
+						</div>
+					</li>
+					<li>
+						<div class="slider-top">
+							<img src="/project/client/images/4.jpg" alt=""/>
+							<p class="second-slide">"Pumpkin and squash seeds provide 33 grams of protein per 100-gram serving. Watermelon seeds provide a little less than 28 grams per 100-gram serving."</p>
+							<p class="below">Food Trivia</p>
+						</div>
+					</li>
+					<li>
+						<div class="slider-top">
+							<img src="/project/client/images/6.jpg" alt=""/>
+							<p class="third-slide">"India, with a population of over 1 billion, eats the least amount of meat in the world with just 7 pounds of meat annually per person."</p>
+							<p class="below">Food Trivia</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="clearfix"> </div>
+			<!--- banner Slider Ends Here --->
+		</div>
+	</div>
+</div>
+
+
+<!-- Footer Starts Here ---->
+<div class="footer1" id="footer">
+	<div class="container">
+		<div class="logo1">
+			<a href="/project/client/index.html"><img src="/project/client/images/f_logo.png" class="foot-img" alt=""></a>
+		</div>
+		<p class="footer-head">Website by <a target="_blank" href="https://www.linkedin.com/in/vivek91">Vivek</a></p>
+		<div class="clearfix"></div>
+	</div>
+	<!--<script type="text/javascript">-->
+		<!--$(document).ready(function() {-->
+			<!--/*-->
+			 <!--var defaults = {-->
+			 <!--containerID: 'toTop', // fading element id-->
+			 <!--containerHoverID: 'toTopHover', // fading element hover id-->
+			 <!--scrollSpeed: 1200,-->
+			 <!--easingType: 'linear'-->
+			 <!--};-->
+			 <!--*/-->
+
+			<!--$().UItoTop({ easingType: 'easeOutQuart' });-->
+
+		<!--});-->
+	<!--</script>-->
+	<!--<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>-->
+</div>
+<!-- Footer Ends Here ---->
+<!--</body>-->
+<!--</html>-->

@@ -1,0 +1,24 @@
+<div id="page-wrapper">
+    <div class="main-page">
+        <div class="forms">
+            <h3 class="title1">My Favorites <span class="compose pull-right" ng-click="model.moreFollowers()" >More <span class="fa fa-chevron-right"></span></span></h3>
+            <h4 style="margin: 1.5em" ng-if="model.favs.length == 0">You have no favorites.</h4>
+
+            <div ng-if="model.favs.length != 0" class="elements  row" style="margin-top: 1.5em">
+                <div class="col-sm-12 col-lg-6 profile profile2 widget-shadow search-grid" ng-repeat="fav in model.favs" style="padding-right: 1em">
+                    <div ng-click="model.href(fav.rID)" style="width: 180px; height: 200px; float: left; padding-left: 0.8em; background: #f7f7f7; margin-right: 1em">
+                        <img class="image" ng-src="{{fav.image}}" alt="" height="135" width="135">
+                        <img ng-src="{{fav.ratingImage}}" alt="" width="150">
+                    </div>
+                    <div style="padding-top: 2em;">
+                        <h3 ng-click="model.href(fav.rID)" style="font-size: 1.6em">{{fav.name}}</h3>
+                        <h4 ng-click="model.href(fav.rID)" style="padding-top: 0.5em; font-size: 1.2em">{{fav.address}}</h4>
+                        <button class="btn btn-default" ng-click="model.dislike(fav.rID)" style="padding: 0.1em 2em; font-size: 1em; background: #d43f3a; margin-top: 1.3em"><span class="fa fa-trash" style="margin-right: 0.6em"></span>Remove</button>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

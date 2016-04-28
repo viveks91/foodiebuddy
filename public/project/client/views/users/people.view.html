@@ -1,0 +1,151 @@
+
+<!-- main content start-->
+<div id="page-wrapper">
+    <div class="main-page">
+        <h3 class="title1">Profile</h3>
+        <div class="elements  row">
+            <div class="col-md-12 profile widget-shadow chat-right-grid">
+                <div class="title3">
+                    <div style="clear: both;">
+                        <h4>Profile Info
+                            <!--<span ng-if="model.editInfo" ng-click="model.editInfo = false" class="fa fa-times pull-right" aria-hidden="true"></span>-->
+                            <!--<span ng-if="!model.editInfo" ng-click="model.editInfo = true" class="fa fa-pencil-square-o pull-right" aria-hidden="true"></span>-->
+                        </h4>
+                    </div>
+                </div>
+                <div class="profile-top">
+                    <img ng-src="{{model.user.image}}" alt="" height="120" width="120" style="background: white">
+                    <div class="floater">
+                        <h4>{{model.user.firstName + " " + model.user.lastName}}</h4>
+                        <h5>Some status</h5>
+                        <button ng-if="currentUser.following.indexOf(model.user.username) == -1" ng-click="model.follow()" class="btn btn-info"><span class="fa fa-user-plus" style="margin-right: 0.6em"></span>Follow</button>
+                        <button ng-if="currentUser.following.indexOf(model.user.username) != -1" ng-click="model.unfollow()" class="btn btn-default"><span class="fa fa-user-times" style="margin-right: 0.6em"></span>Unfollow</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="profile-text">
+                    <div class="profile-row">
+                        <div class="profile-left">
+                            <i class="fa fa-envelope profile-icon"></i>
+                        </div>
+                        <div class="profile-right">
+                            <h4>{{model.user.email || "Not Available"}} </h4>
+                            <p>Email</p>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="profile-row row-middle">
+                        <div class="profile-left">
+                            <i class="fa fa-mobile profile-icon"></i>
+                        </div>
+                        <div class="profile-right">
+                            <h4>{{model.user.phone || "Not Available"}}</h4>
+                            <p>Contact Number</p>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div ng-if="model.moreInfo">
+                        <div ng-if="model.user.gender==-1" class="profile-row row-down-middle">
+                            <div class="profile-left">
+                                <i class="fa fa-transgender profile-icon"></i>
+                            </div>
+                            <div class="profile-right">
+                                <h4> Unknown</h4>
+                                <p>Gender</p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div ng-if="model.user.gender==0" class="profile-row row-down-middle">
+                            <div class="profile-left">
+                                <i class="fa fa-mars profile-icon"></i>
+                            </div>
+                            <div class="profile-right">
+                                <h4> Male</h4>
+                                <p>Gender</p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div ng-if="model.user.gender==1" class="profile-row row-down-middle">
+                            <div class="profile-left">
+                                <i class="fa fa-venus profile-icon"></i>
+                            </div>
+                            <div class="profile-right">
+                                <h4> Female</h4>
+                                <p>Gender</p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                    <div class="profile-row row-down-middle">
+                        <div class="profile-left">
+                            <i class="fa fa-facebook profile-icon"></i>
+                        </div>
+                        <div class="profile-right">
+                            <h4>{{model.user.fbprofile || "Not Available"}}</h4>
+                            <p>Facebook</p>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div ng-if="model.moreInfo" class="profile-row row-down-middle">
+                        <div class="profile-left">
+                            <i class="fa fa-google-plus profile-icon"></i>
+                        </div>
+                        <div class="profile-right">
+                            <h4>{{model.user.gprofile || "Not Available"}}</h4>
+                            <p>Google+</p>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="profile-row">
+                        <div class="profile-left">
+                            <i class="fa fa-map-marker profile-icon"></i>
+                        </div>
+                        <div class="profile-right">
+                            <h4>{{model.user.address || "Not Available"}}</h4>
+                            <p>Address</p>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                </div>
+                <div class="profile-btm">
+                    <ul>
+                        <li>
+                            <h4>{{model.user.following.length}}</h4>
+                            <h5>Following</h5>
+                        </li>
+                        <li>
+                            <h4>{{model.user.favs.length}}</h4>
+                            <h5>Favorites</h5>
+                        </li>
+                        <li ng-click="model.moreInfo = !model.moreInfo" style="cursor: pointer">
+                            <h5 ng-if="!model.moreInfo">More Info</h5>
+                            <h5 ng-if="model.moreInfo">Less Info</h5>
+                            <h5>Here</h5>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-12 profile widget-shadow">
+                <h4 class="title3 title4">Following
+                    <p href ng-click="model.moreFollowing()" class="pull-right">More <span class="fa fa-chevron-right"></span></p>
+                </h4>
+
+
+                <div class="scrollbar scrollbar1">
+                    <h4 ng-if="model.user.following.length == 0" style="margin: 1em 1em; text-align: center"> {{model.user.firstName}} is not following anyone</h4>
+                    <div class="follpanels" ng-repeat="following in model.following">
+                        <div ng-click="model.href(following.username)" >
+                            <img ng-src="{{following.image}}" alt="" height="100" width="100" style="background: white">
+                            <h3>{{following.firstName + " " + following.lastName}}</h3>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+

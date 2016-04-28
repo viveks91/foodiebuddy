@@ -1,0 +1,33 @@
+<div id="page-wrapper">
+    <div class="main-page">
+        <h3 class="title1">Search Restaurants </h3>
+        <div class="forms">
+            <div style="margin: 0.8em 0;">
+                <input type="text" class="form-control" id="exampleInputName2" ng-model="model.name" style="padding: 1.239em 0.5em; font-size: 1.2em; width: 34%; float:left" placeholder="Restaurant Name">
+                <input type="text" class="form-control" id="exampleInputName3" ng-model="model.location" style="padding: 1.239em 0.5em; font-size: 1.2em; width: 34%; float:left" placeholder="Location">
+                <button class="btn btn-success" ng-click="model.href(model.name,model.location)">Search</button>
+            </div>
+
+            <h4 style="margin: 1em" ng-if="model.errorMessage">
+                {{model.errorMessage}}
+            </h4>
+
+            <div ng-if="model.normalized.length != 0" class="elements  row" style="margin-top: 1.5em">
+                <div class="col-sm-12 col-lg-6 profile profile2 widget-shadow search-grid" ng-repeat="restaurant in model.normalized" style="padding-right: 1em">
+                    <div ng-click="model.selectRestaurant(restaurant)">
+                        <div style="width: 180px; height: 200px; float: left; padding-left: 0.8em; background: #f7f7f7; margin-right: 1em">
+                            <img class="image" ng-src="{{restaurant.image}}" alt="" height="135" width="135">
+                            <img ng-src="{{restaurant.ratingImage}}" alt="" width="150">
+                        </div>
+                        <div style="padding-top: 2em;">
+                            <h3 style="font-size: 1.6em">{{restaurant.name}}</h3>
+                            <h4 style="padding-top: 0.5em; font-size: 1.2em">{{restaurant.address}}</h4>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

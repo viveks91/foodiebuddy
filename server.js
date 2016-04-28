@@ -38,7 +38,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(passport.initialize());
 app.use(passport.session());
 
-require("./public/app.js")(app, db, mongoose);
+require("./public/app.js")(app, db);
 
 console.error("Server started: listening to port "+ port);
 app.listen(port, ipaddress);

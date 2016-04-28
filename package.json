@@ -32,7 +32,8 @@
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.0",
     "passport-google-oauth": "^1.0.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "yelp": "^1.0.1"
   },
   "devDependencies": {},
   "bundleDependencies": [],

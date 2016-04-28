@@ -1,44 +1,276 @@
 <div ng-controller="HeaderController as model">
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <span class="navbar-brand logo">FoodieBuddy</span>
+    <div ng-show="currentUser" class="sticky-header header-section">
+        <div class="header-left">
+            <!--toggle button start-->
+            <button id="showLeftPush"><i class="fa fa-bars"></i></button>
+            <!--toggle button end-->
+            <!--logo -->
+            <a href="#/home"><img src="images/f_logo.png" class="foot-img" alt="" style="float: left; margin: 0px -15px;" height="55"></a>
+            <div class="logo">
+                <a href="#/home">
+                    <h1>Foodie Buddy</h1>
+                    <!--<span>AdminPanel</span>-->
+                </a>
             </div>
-            <div id="navbar" class="navbar-collapse collapse mediumfont">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a ng-class="{disabled: model.$location.url()=='/profile'}"
-                           ng-show="currentUser"
-                           href="#/profile">
-                            {{currentUser.username}}
-                        </a>
+            <!--//logo-->
+            <!--search-box-->
+            <!--<div class="search-box">-->
+            <!--<form class="input">-->
+            <!--<input class="sb-search-input input__field&#45;&#45;madoka" placeholder="Search..." type="search" id="input-31" />-->
+            <!--&lt;!&ndash;<div class="sminputs">&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="input full">&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<label class="string optional" for="user-pw">Password *</label>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;<input maxlength="255" id="search" placeholder="Search.." type="search" size="50" />&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<label class="input__label" for="input-31">&ndash;&gt;-->
+            <!--&lt;!&ndash;<svg class="graphic" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">&ndash;&gt;-->
+            <!--&lt;!&ndash;<path d="m0,0l404,0l0,77l-404,0l0,-77z"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;</svg>&ndash;&gt;-->
+            <!--&lt;!&ndash;</label>&ndash;&gt;-->
+            <!--</form>-->
+            <!--</div>&lt;!&ndash;//end-search-box&ndash;&gt;-->
+            <div class="clearfix"> </div>
+        </div>
+        <div class="header-right">
+            <div class="profile_details_left"><!--notifications of menu start -->
+                <ul class="nofitications-dropdown">
+                    <li class="dropdown head-dpdn">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue">{{myReservs.length}}</span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="notification_header">
+                                    <h3>You have {{myReservs.length}} upcoming reservations</h3>
+                                </div>
+                            </li>
+                            <li ng-repeat="reserv in myReservs"><a href="#/reservations">
+                                <div class="user_img">
+                                    <img ng-src="{{reserv.rImage}}" alt=""></div>
+                                <div class="notification_desc">
+                                    <p>{{reserv.rName}}</p>
+                                    <p><span>{{reserv.rDate}}</span></p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </a></li>
+                            <!--<li><a href="">-->
+                                <!--<div class="user_img"><img src="images/2.png" alt=""></div>-->
+                                <!--<div class="notification_desc">-->
+                                    <!--<p>Lorem ipsum dolor amet</p>-->
+                                    <!--<p><span>1 hour ago</span></p>-->
+                                <!--</div>-->
+                                <!--<div class="clearfix"></div>-->
+                            <!--</a></li>-->
+                            <!--<li class="odd"><a href="">-->
+                                <!--<div class="user_img"><img src="images/1.png" alt=""></div>-->
+                                <!--<div class="notification_desc">-->
+                                    <!--<p>Lorem ipsum dolor amet </p>-->
+                                    <!--<p><span>1 hour ago</span></p>-->
+                                <!--</div>-->
+                                <!--<div class="clearfix"></div>-->
+                            <!--</a></li>-->
+                            <!--<li><a href="">-->
+                                <!--<div class="user_img"><img src="images/3.png" alt=""></div>-->
+                                <!--<div class="notification_desc">-->
+                                    <!--<p>Lorem ipsum dolor amet </p>-->
+                                    <!--<p><span>1 hour ago</span></p>-->
+                                <!--</div>-->
+                                <!--<div class="clearfix"></div>-->
+                            <!--</a></li>-->
+                            <li>
+                                <div class="notification_bottom">
+                                    <a href="#/reservations">See all reservations</a>
+                                </div>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                        <a ng-click="model.logout()" ng-show="currentUser" href="#">Logout</a>
+                    <li class="dropdown head-dpdn">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-envelope"></i><span class="badge">{{currentUser.mails.filter(model.unread).length}}</span></a>
+
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="notification_header">
+                                    <h3>You have {{currentUser.mails.filter(model.unread).length}} new messages</h3>
+                                </div>
+                            </li>
+                            <li ng-repeat="mail in messageBundle"><a href="#/inbox">
+                                <div class="user_img">
+                                    <img ng-src="{{mail.fromImage}}" alt=""></div>
+                                <div class="notification_desc">
+                                    <p>{{mail.subject}}</p>
+                                    <p><span>{{mail.timeAgo}}</span><span ng-if="!mail.read" style="margin-left: 9px; font-weight: bold">NEW</span></p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </a></li>
+                            <li>
+                                <div class="notification_bottom">
+                                    <a href="#/inbox">See all messages</a>
+                                </div>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                        <a ng-class="{disabled: model.$location.url()=='/register'}"
-                           href="#/register"
-                           ng-show="!currentUser">
-                            Register
+
+                    <!--<li class="dropdown head-dpdn">-->
+                    <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-tasks"></i><span class="badge blue1">15</span></a>-->
+                    <!--<ul class="dropdown-menu">-->
+                    <!--<li>-->
+                    <!--<div class="notification_header">-->
+                    <!--<h3>You have 8 pending task</h3>-->
+                    <!--</div>-->
+                    <!--</li>-->
+                    <!--<li><a href="#">-->
+                    <!--<div class="task-info">-->
+                    <!--<span class="task-desc">Database update</span><span class="percentage">40%</span>-->
+                    <!--<div class="clearfix"></div>-->
+                    <!--</div>-->
+                    <!--<div class="progress progress-striped active">-->
+                    <!--<div class="bar yellow" style="width:40%;"></div>-->
+                    <!--</div>-->
+                    <!--</a></li>-->
+                    <!--<li><a href="#">-->
+                    <!--<div class="task-info">-->
+                    <!--<span class="task-desc">Dashboard done</span><span class="percentage">90%</span>-->
+                    <!--<div class="clearfix"></div>-->
+                    <!--</div>-->
+                    <!--<div class="progress progress-striped active">-->
+                    <!--<div class="bar green" style="width:90%;"></div>-->
+                    <!--</div>-->
+                    <!--</a></li>-->
+                    <!--<li><a href="#">-->
+                    <!--<div class="task-info">-->
+                    <!--<span class="task-desc">Mobile App</span><span class="percentage">33%</span>-->
+                    <!--<div class="clearfix"></div>-->
+                    <!--</div>-->
+                    <!--<div class="progress progress-striped active">-->
+                    <!--<div class="bar red" style="width: 33%;"></div>-->
+                    <!--</div>-->
+                    <!--</a></li>-->
+                    <!--<li><a href="#">-->
+                    <!--<div class="task-info">-->
+                    <!--<span class="task-desc">Issues fixed</span><span class="percentage">80%</span>-->
+                    <!--<div class="clearfix"></div>-->
+                    <!--</div>-->
+                    <!--<div class="progress progress-striped active">-->
+                    <!--<div class="bar  blue" style="width: 80%;"></div>-->
+                    <!--</div>-->
+                    <!--</a></li>-->
+                    <!--<li>-->
+                    <!--<div class="notification_bottom">-->
+                    <!--<a href="#">See all pending tasks</a>-->
+                    <!--</div>-->
+                    <!--</li>-->
+                    <!--</ul>-->
+                    <!--</li>-->
+                </ul>
+                <div class="clearfix"> </div>
+            </div>
+            <!--notification menu end -->
+            <div class="profile_details">
+                <ul>
+                    <li class="dropdown profile_details_drop">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <div class="profile_img">
+                                <span class="prfil-img">
+                                    <img ng-src="{{currentUser.image}}" alt="" height="50" width="50" style="background: #FAFAFA;background-repeat: no-repeat;background-position: 50%; border-radius: 50%;">
+                                </span>
+                                <div class="user-name">
+                                    <p>{{currentUser.firstName || currentUser.username}}</p>
+                                    <span>{{currentUser.roles.indexOf("admin")!= -1 ? "Admin" : currentUser.lastName}}</span>
+                                </div>
+                                <i class="fa fa-angle-down lnr"></i>
+                                <i class="fa fa-angle-up lnr"></i>
+                                <div class="clearfix"></div>
+                            </div>
                         </a>
-                    </li>
-                    <li>
-                        <a ng-class="{disabled: model.$location.url()=='/login'}"
-                           href="#/login"
-                           ng-show="!currentUser">
-                            Login
-                        </a>
+                        <ul class="dropdown-menu drp-mnu">
+                            <!--<li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>-->
+                            <li> <a href="#/profile"><i class="fa fa-user"></i> Profile</a> </li>
+                            <li> <a href ng-click="model.logout()"><i class="fa fa-sign-out"></i> Logout</a> </li>
+                        </ul>
                     </li>
                 </ul>
             </div>
+            <div class="clearfix"> </div>
         </div>
-    </nav>
+        <div class="clearfix"> </div>
+    </div>
+
+    <div ng-show="currentUser" class="sidebar" role="navigation">
+        <div class="navbar-collapse">
+            <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a href="#/admin" ng-if="currentUser.roles.indexOf('admin') != -1" ng-class="{'active': model.$location.url()=='/admin'}"><i class="fa fa-lock nav_icon"></i>Admin</a>
+                    </li>
+                    <li>
+                        <a href="#/home" ng-class="{'active': model.$location.url()=='/home'}"><i class="fa fa-home nav_icon"></i>Home</a>
+                    </li>
+                    <li>
+                        <a href="#/inbox" ng-class="{'active': model.$location.url()=='/inbox'}">
+                            <i class="fa fa-envelope nav_icon"></i>
+                            Mailbox
+                            <span class="nav-badge">{{currentUser.mails.filter(model.unread).length}}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/search" ng-class="{'active': model.$location.url()=='/search'}"><i class="fa fa-search nav_icon"></i>Search Restaurants</a>
+                        <!-- /nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="#/finduser" ng-class="{'active': model.$location.url()=='/finduser'}"><i class="fa fa-user nav_icon"></i>Find People</a>
+                        <!-- /nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="#/reservations" ng-class="{'active': model.$location.url()=='/reservations'}">
+                            <i class="fa fa-table nav_icon"></i>My Reservations
+                            <span class="nav-badge-btm">{{myReservs.length}}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/fav" ng-class="{'active': model.$location.url()=='/fav'}"><i class="fa fa-heart nav_icon"></i>My Favorites</a>
+                    </li>
+                    <li>
+                        <a href="#/following" ng-class="{'active': model.$location.url()=='/following'}"><i class="fa fa-user-plus nav_icon"></i>Following</a>
+                    </li>
+                    <li>
+                        <a href="#/followers" ng-class="{'active': model.$location.url()=='/followers'}"><i class="fa fa-users nav_icon"></i>Followers</a>
+                    </li>
+
+                    <!--<li>-->
+                    <!--<a href="tables.html"><i class="fa fa-table nav_icon"></i>Tables <span class="nav-badge">05</span></a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<a href="#"><i class="fa fa-check-square-o nav_icon"></i>Forms<span class="fa arrow"></span></a>-->
+                    <!--<ul class="nav nav-second-level collapse">-->
+                    <!--<li>-->
+                    <!--<a href="forms.html">Basic Forms <span class="nav-badge-btm">07</span></a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<a href="validation.html">Validation</a>-->
+                    <!--</li>-->
+                    <!--</ul>-->
+                    <!--&lt;!&ndash; //nav-second-level &ndash;&gt;-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<a href="#"><i class="fa fa-file-text-o nav_icon"></i>Pages<span class="nav-badge-btm">02</span><span class="fa arrow"></span></a>-->
+                    <!--<ul class="nav nav-second-level collapse">-->
+                    <!--<li>-->
+                    <!--<a href="login.html">Login</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<a href="signup.html">SignUp</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<a href="blank-page.html">Blank Page</a>-->
+                    <!--</li>-->
+                    <!--</ul>-->
+                    <!--&lt;!&ndash; //nav-second-level &ndash;&gt;-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<a href="charts.html" class="chart-nav"><i class="fa fa-bar-chart nav_icon"></i>Charts <span class="nav-badge-btm pull-right">new</span></a>-->
+                    <!--</li>-->
+                </ul>
+                <!-- //sidebar-collapse -->
+            </nav>
+        </div>
+    </div>
 </div>

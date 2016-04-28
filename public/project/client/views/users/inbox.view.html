@@ -1,0 +1,78 @@
+<div id="page-wrapper">
+    <div class="main-page">
+        <h3 class="title1">
+            <span style="float: left; cursor: pointer" ng-click="model.inboxView = 1">Inbox </span>
+            <span class="compose" ng-click="model.inboxView = 0" style="margin: 0 2em; float: left; clear: right">Compose New <span class="fa fa-pencil-square-o"></span></span>
+            <div class="clearfix"></div>
+        </h3>
+        <div ng-if="model.inboxView" class="inbox-page">
+            <div class="inbox-row widget-shadow" id="accordion" role="tablist" aria-multiselectable="true" ng-repeat="mail in model.mails">
+                <div class="mail mail-pad"><input type="checkbox" class="checkbox"> </div>
+                <a role="button" ng-click="model.openToggle(mail)">
+
+                    <div class="mail">
+                        <img class="mail" width="50" height="50" ng-src="{{mail.fromImage}}"/>
+                    </div>
+                    <div class="mail mail-name mail-pad" style="margin: 0 1em"> <h6>{{mail.fromName}}</h6> </div>
+
+                    <div class="mail mail-pad"><p style="margin: 0 0.5em">{{mail.subject}}</p></div>
+                </a>
+                <div class="mail-right mail-pad">
+                    <div class="dropdown">
+                        <a href="" data-toggle="dropdown" aria-expanded="false">
+                            <p style="padding: 0 0.5em;"><i class="fa fa-ellipsis-v mail-icon"></i></p>
+                        </a>
+                        <ul class="dropdown-menu float-right">
+                            <li>
+                                <a role="button"  ng-click="model.openToggle(mail)">
+                                    <i class="fa fa-reply mail-icon"></i>
+                                    Reply
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" class="font-red" ng-click="model.deleteMail(mail._id)">
+                                    <i class="fa fa-trash-o mail-icon"></i>
+                                    Delete
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mail-right mail-pad"><p>{{model.dateString(mail.time)}}</p></div>
+                <div ng-if="!mail.read" class="mail-right mail-pad"><p style="color: #2aa0a2">New</p></div>
+                <div class="clearfix"> </div>
+                <!--<div ng-if="model.switch" class="mail-body"><p>asdas</p></div>-->
+
+                <div ng-if="mail.open" class="panel-collapse">
+                    <div class="mail-body">
+                        <p>{{mail.body}}</p>
+                        <form autocomplete="off">
+                            <input ng-model="mail.reply" type="text" placeholder="Reply to sender" required="">
+                            <input type="submit" value="Send" ng-click="model.reply(mail)">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <h4 ng-if="model.mails.length == 0">You have 0 mails</h4>
+        </div>
+
+        <div ng-if="!model.inboxView" class=" compose-right widget-shadow" style="font-size: 1.2em">
+            <div class="panel-default">
+                <div class="panel-heading">
+                    Compose New Message
+                </div>
+                <div class="panel-body">
+                    <form class="com-mail">
+                        <input ng-model="model.mail.to" type="text" class="form-control1 control3" placeholder="To : < username >">
+                        <input ng-model="model.mail.sub" type="text" class="form-control1 control3" placeholder="Subject :">
+                        <textarea ng-model="model.mail.message" rows="6" class="form-control1 control2" placeholder="Message :" ></textarea>
+                        <div>
+                            <input ng-click="model.compose()" type="submit" value="Send Message">
+                            <p ng-if="model.error" class="control3 pull-right" style="color: red; padding-top: 1.4em">{{model.error}}</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

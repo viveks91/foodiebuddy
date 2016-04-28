@@ -1,10 +1,55 @@
 [
   {
     "firstName": "root",
-    "lastName": "",
+    "lastName": "beet",
     "username": "root",
     "password": "root",
-    "email": [],
-    "roles": ["user", "admin"]
+    "email": "root@root.com",
+    "phone": "111111111",
+    "fbprofile": "fb.com/root",
+    "roles": ["user", "admin"],
+    "following": ["asd", "alice", "bob"]
+  },
+  {
+    "firstName": "AAA",
+    "lastName": "SSS",
+    "username": "asd",
+    "password": "a",
+    "email": "asd@asd.com",
+    "phone": "1111431111",
+    "fbprofile": "fb.com/asd",
+    "roles": ["user"],
+    "followers": ["root"],
+    "gender": 1,
+    "image": "images/dp3.png",
+    "mails": []
+  },
+  {
+    "firstName": "Alice",
+    "lastName": "Wonderland",
+    "username": "alice",
+    "password": "alice",
+    "email": "alice@alice.com",
+    "phone": "1111431111",
+    "fbprofile": "fb.com/alice",
+    "roles": ["user"],
+    "followers": ["root"],
+    "gender": 1,
+    "image": "images/dp3.png",
+    "mails": []
+  },
+  {
+    "firstName": "Bob",
+    "lastName": "Smith",
+    "username": "bob",
+    "password": "bob",
+    "email": "bob@bob.com",
+    "phone": "1111431111",
+    "fbprofile": "fb.com/bob",
+    "roles": ["user"],
+    "followers": ["root"],
+    "gender": 1,
+    "image": "images/dp4.png",
+    "mails": []
   }
 ]

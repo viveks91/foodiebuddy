@@ -1,6 +1,27 @@
-<h1 class="page-header">Welcome!</h1>
-<div>
-    <p align="justify">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam.
-    </p>
+
+<div id="page-wrapper">
+    <div class="main-page">
+        <h3 class="title1" style="margin-bottom: 1em">Welcome, {{model.user.firstName}}!</h3>
+        <div class="forms">
+            <h4 style="margin: 1em" ng-if="model.posts.length == 0">
+                You have no posts to see
+            </h4>
+
+            <div class="form-three widget-shadow" style="width: 80%; margin: 0.5em 10%;" ng-repeat="post in model.posts">
+                <form class="form-horizontal" style="font-size: 1.1em">
+                    <div class="form-group">
+                        <a ng-href="#/profile/{{post.username}}"><img ng-src="{{post.image}}" class="col-sm-2 col-xs-1 control-label" alt="" style="background-color: white" style="width:100%"></a>
+                        <div class="col-sm-8 col-xs-pull-0" style="margin-top: 1em">
+                            <p><a ng-href="#/profile/{{post.username}}">{{post.user}}</a> added a review to <a ng-href="#/restaurant/{{post.rID}}">{{post.rName}}:</a></p>
+                            <p style="margin-top: 0.5em"><i>"{{post.body}}"</i></p>
+                            <!--<textarea ng-model="model.newReview.body" placeholder="Write a review here" name="txtarea1" id="disabledinput" cols="50" rows="4" class="form-control1"></textarea>-->
+                            <span ng-if="post.likes.indexOf(currentUser.username) == -1 " class="fa fa-thumbs-up" style="cursor: pointer;margin-top: 1em" ng-click="model.likePost(post._id);"> {{post.likes.length}} Likes </span>
+                            <span ng-if="post.likes.indexOf(currentUser.username) != -1" style="color: #0c7fda; cursor: pointer;margin-top: 1em" class="fa fa-thumbs-up" ng-click="model.dislikePost(post._id)"> {{post.likes.length}} Likes </span>
+                        </div>
+                        <a ng-href="#/restaurant/{{post.rID}}"><img ng-src="{{post.rImage}}" class="col-sm-2 col-xs-4 pull-right control-label"></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

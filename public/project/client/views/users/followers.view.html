@@ -1,0 +1,22 @@
+<div id="page-wrapper">
+    <div class="main-page">
+        <div class="forms">
+            <h3 class="title1" style="margin-bottom: 0.8em">My Followers <span class="compose pull-right" ng-click="model.moreFollowers()" >More <span class="fa fa-chevron-right"></span></span></h3>
+            <h4 style="margin: 1.5em" ng-if="model.followers.length == 0">You have 0 followers.</h4>
+            <div class="elements  row">
+                <div ng-click="model.href(follower.username)" class="col-sm-12 col-lg-6 profile profile1 widget-shadow follow-grid" ng-repeat="follower in model.followers">
+                    <img ng-src="{{follower.image}}" alt="" height="100" width="100" style="background: white">
+                    <!--<img src="images/dp4.png" alt="" height="100" width="100" style="background: white; float: left">-->
+                    <div class="floater" style="text-align: center; margin-top: 0.6em">
+                        <div style="margin-bottom: 0.7em">
+                            <h3 style="float: left;">{{follower.firstName}}</h3>
+                            <h3 style="float: left; clear: right; margin-left: 0.6em">{{follower.lastName}}</h3>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

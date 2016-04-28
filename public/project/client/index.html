@@ -1,38 +1,142 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="FoodieBuddy">
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html lang="en"  ng-app="FoodieBuddy">
 <head>
-    <title>FoodieBuddy</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link href="views/dashboard.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular-route.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="app.js"></script>
-    <script src="config.js"></script>
-    <script src="views/main/main.controller.js"></script>
-    <script src="views/header/header.controller.js"></script>
-    <script src="views/sidebar/sidebar.controller.js"></script>
-    <script src="services/user.service.client.js"></script>
-    <script src="views/users/login.controller.js"></script>
-    <script src="views/users/register.controller.js"></script>
-    <script src="views/users/profile.controller.js"></script>
-    <script src="views/admin/admin.controller.js"></script>
-    <script src="directives/jga-directives.js"></script>
+	<title>Foodie Buddy</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular-route.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+	<!-- Bootstrap Core CSS -->
+	<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<!-- Custom CSS -->
+	<link href="css/style.css" rel='stylesheet' type='text/css' />
+	<link href="css/style1.css" rel='stylesheet' type='text/css' />
+	<!-- font CSS -->
+	<!-- js-->
+	<!--<script src="js/jquery-1.11.1.min.js"></script>-->
+	<script src="js/modernizr.custom.min.js"></script>
+	<!--webfonts-->
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+	<!--//webfonts-->
+	<!--animate-->
+
+	<link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
+	<script src="js/wow.min.js"></script>
+	<script>
+		new WOW().init();
+	</script>
+	<!--//end-animate-->
+	<!-- chart -->
+	<script src="js/Chart.js"></script>
+	<!-- //chart -->
+	<!--Calender-->
+	<link rel="stylesheet" href="css/clndr.css" type="text/css" />
+	<script src="js/underscore-min.js" type="text/javascript"></script>
+	<script src= "js/moment-2.2.1.js" type="text/javascript"></script>
+	<script src="js/clndr.js" type="text/javascript"></script>
+	<!--<script src="js/site.js" type="text/javascript"></script>-->
+	<!--End Calender-->
+	<!-- Metis Menu -->
+	<script src="js/metisMenu.min.js"></script>
+	<script src="js/custom.js"></script>
+	<link href="css/custom.css" rel="stylesheet">
+	<!--//Metis Menu -->
+
+	<script type="text/javascript" src="/project/client/js/move-top.js"></script>
+	<script type="text/javascript" src="/project/client/js/easing.js"></script>
+	<script type="text/javascript" src="/project/client/js/jquery.jscrollpane.min.js"></script>
+	<script src="/project/client/js/responsiveslides.min.js"></script>
+	<script src="js/classie.js"></script>
+
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
+
+
+	<script src="app.js"></script>
+	<script src="config.js"></script>
+	<script src="views/main/main.controller.js"></script>
+	<script src="views/header/header.controller.js"></script>
+	<script src="views/home/home.controller.js"></script>
+	<script src="views/sidebar/sidebar.controller.js"></script>
+	<script src="services/user.service.client.js"></script>
+	<script src="services/restaurant.service.client.js"></script>
+	<script src="views/users/login.controller.js"></script>
+	<script src="views/restaurant/restaurantsearch.controller.js"></script>
+	<script src="views/restaurant/details.controller.js"></script>
+	<script src="views/users/register.controller.js"></script>
+	<script src="views/users/profile.controller.js"></script>
+	<script src="views/users/finduser.controller.js"></script>
+	<script src="views/users/inbox.controller.js"></script>
+	<script src="views/users/reserv.controller.js"></script>
+	<script src="views/users/following.controller.js"></script>
+	<script src="views/users/fav.controller.js"></script>
+	<script src="views/users/followers.controller.js"></script>
+	<script src="views/users/people.controller.js"></script>
+	<script src="views/admin/admin.controller.js"></script>
+	<script src="directives/jga-directives.js"></script>
 </head>
-<body ng-controller="MainController as model">
-    <div ng-include="model.headerPage"></div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-3 col-md-2 sidebar">
-                <div ng-include="model.sidebarPage"></div>
-            </div>
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-view>
-            </div>
-        </div>
-    </div>
+<body class="cbp-spmenu-push" ng-controller="MainController as model">
+<div class="main-content">
+
+	<div ng-if="currentUser" ng-include="model.headerPage"></div>
+	<div ng-view></div>
+
+	<!-- Footer Starts Here ---->
+
+	<div ng-show="currentUser" class="footer">
+		<a href="#"><img src="images/f_logo.png" class="foot-img" ></a>
+		<p>&copy; 2016 Website by <a target="_blank" href="https://www.linkedin.com/in/vivek91">Vivek</a></p>
+	</div>
+
+
+	<!--<script>-->
+		<!--var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),-->
+				<!--showLeftPush = document.getElementById( 'showLeftPush' ),-->
+				<!--body = document.body;-->
+
+		<!--showLeftPush.onclick = function() {-->
+			<!--classie.toggle( this, 'active' );-->
+			<!--classie.toggle( body, 'cbp-spmenu-push-toright' );-->
+			<!--classie.toggle( menuLeft, 'cbp-spmenu-open' );-->
+			<!--disableOther( 'showLeftPush' );-->
+		<!--};-->
+
+
+		<!--function disableOther( button ) {-->
+			<!--if( button !== 'showLeftPush' ) {-->
+				<!--classie.toggle( showLeftPush, 'disabled' );-->
+			<!--}-->
+		<!--}-->
+	<!--</script>-->
+
+	<!--<div class="footer" id="footer">-->
+		<!--&lt;!&ndash;<div class="container">&ndash;&gt;-->
+			<!--&lt;!&ndash;<div class="logo">&ndash;&gt;-->
+			<!--<a href="#"><img src="images/f_logo.png" class="foot-img" ></a>-->
+			<!--&lt;!&ndash;</div>&ndash;&gt;-->
+			<!--<p class="footer-head">Website by <a href="https://www.linkedin.com/in/vivek91">Vivek</a></p>-->
+			<!--&lt;!&ndash;<div class="clearfix"></div>&ndash;&gt;-->
+		<!--&lt;!&ndash;</div>&ndash;&gt;-->
+	<!--</div>-->
+	<!-- Footer Ends Here ---->
+
+</div>
+<!-- Classie -->
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.js"> </script>
 </body>
 </html>
