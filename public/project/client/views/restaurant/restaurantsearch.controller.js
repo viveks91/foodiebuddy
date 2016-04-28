@@ -20,6 +20,9 @@
                 vm.name = parts[0];
                 vm.location = parts[1];
                 search(parts[0],parts[1]);
+            } else {
+                vm.name = "";
+                vm.location = "";
             }
         }
         init();
@@ -41,8 +44,9 @@
                 .then(function(response) {
                     if ('statusCode' in response.data || response.data.businesses.length == 0) {
                         vm.errorMessage = "No such place found.";
+                    } else {
+                        normalize(response.data.businesses);
                     }
-                    normalize(response.data.businesses);
                 });
         }
 
@@ -85,6 +89,7 @@
         }
 
         function href(name, location) {
+            console.log(name, location);
             name = name.replace(/\s/g, '');
             location = location.replace(/\s/g, '');
             vm.$location.url("/search/"+name+"$"+location);

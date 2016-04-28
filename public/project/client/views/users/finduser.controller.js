@@ -22,6 +22,9 @@
                 vm.query2 = parts[1];
 
                 search(parts[0],parts[1]);
+            } else {
+                vm.query1 = "";
+                vm.query2 = "";
             }
         }
         init();
