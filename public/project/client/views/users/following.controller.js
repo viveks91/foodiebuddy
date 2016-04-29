@@ -13,27 +13,32 @@
 
         function init() {
             vm.$location = $location;
+            vm.followingCount = 12;
             UserService
                 .getCurrentUser()
                 .then(function(response) {
                     vm.currentUser = response.data;
-                    return UserService.findUsersByUsernames(vm.currentUser.following)
+                    reloadDetails(vm.currentUser.following);
                 })
-                .then(function(response) {
-                    vm.totalFollowing = response.data;
-                    vm.following = vm.totalFollowing.slice(0,12);
-                    vm.followingCount = 12;
-                });
         }
         init();
+
+        function reloadDetails(usernames) {
+            UserService
+                .findUsersByUsernames(usernames)
+                .then(function(response) {
+                    vm.totalFollowing = response.data;
+                    vm.following = vm.totalFollowing.slice(vm.followingCount-12, vm.followingCount);
+                    vm.followingCount = 12;
+                })
+        }
 
         function unfollow(username) {
             UserService
                 .handleFollow(vm.currentUser.username, username, 0)
                 .then(function(response) {
                     UserService.setCurrentUser(response.data[0]);
-                    vm.totalFollowing = response.data[0].following;
-                    vm.following = vm.totalFollowing.slice(vm.followingCount-12, vm.followingCount);
+                    reloadDetails(response.data[0].following);
                 });
         }
 
