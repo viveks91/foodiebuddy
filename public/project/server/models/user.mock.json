@@ -32,8 +32,8 @@
     "email": "alice@alice.com",
     "phone": "1111431111",
     "fbprofile": "fb.com/alice",
-    "roles": ["user"],
-    "followers": ["root"],
+    "roles": ["user", "admin"],
+    "followers": ["root", "bob"],
     "gender": 1,
     "image": "images/dp3.png",
     "mails": []
@@ -48,7 +48,8 @@
     "fbprofile": "fb.com/bob",
     "roles": ["user"],
     "followers": ["root"],
-    "gender": 1,
+    "following": ["alice"],
+    "gender": 0,
     "image": "images/dp4.png",
     "mails": []
   }

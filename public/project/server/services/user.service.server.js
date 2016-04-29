@@ -498,6 +498,8 @@ module.exports = function(app, userModel, reservationModel, postModel) {
 
         if(!newUser.roles) {
             newUser.roles = ["user"];
+        } else {
+            newUser.roles = newUser.roles.replace(/\s+/g, '').split(",");
         }
 
         // first check if a user already exists with the username
@@ -540,6 +542,10 @@ module.exports = function(app, userModel, reservationModel, postModel) {
     function adminUpdate(req, res) {
         var userId = req.params.userId;
         var user = req.body;
+
+        if(typeof user.roles == "string") {
+            user.roles = user.roles.replace(/\s+/g, '').split(",");
+        }
 
         if (user.password.length > 0) {
             user.password = bcrypt.hashSync(user.password);
@@ -602,10 +608,6 @@ module.exports = function(app, userModel, reservationModel, postModel) {
     function updateUser(req, res) {
         var userId = req.params.userId;
         var user = req.body;
-
-        //if(typeof user.roles == "string") {
-        //    user.roles = user.roles.replace(/\s+/g, '').split(",");
-        //}
 
         if (user.password.length > 0) {
             user.password = bcrypt.hashSync(user.password);
