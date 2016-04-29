@@ -33,6 +33,11 @@
         init();
 
         function updateUser(newUser) {
+            if(newUser.gender == 1) {
+                newUser.image = "images/dp3.png";
+            } else {
+                newUser.image = "images/dp4.png";
+            }
             UserService
                 .updateUser(newUser._id, newUser)
                 .then(function(response){
