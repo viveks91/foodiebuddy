@@ -53,7 +53,7 @@
                     var user = response.data;
                     if(user) {
                         UserService.setCurrentUser(response.data);
-                        vm.$location.url("/home");
+                        vm.$location.url("/profile");
                     } else {
                         alert("Username already exits");
                     }
