@@ -36,7 +36,10 @@
             <div class="profile_details_left"><!--notifications of menu start -->
                 <ul class="nofitications-dropdown">
                     <li class="dropdown head-dpdn">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue">{{myReservs.length}}</span></a>
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-bell"></i>
+                            <span class="badge blue" ng-if="myReservs.length > 0">{{myReservs.length}}</span>
+                        </a>
                         <ul class="dropdown-menu">
                             <li>
                                 <div class="notification_header">
@@ -84,7 +87,10 @@
                         </ul>
                     </li>
                     <li class="dropdown head-dpdn">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-envelope"></i><span class="badge">{{currentUser.mails.filter(model.unread).length}}</span></a>
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-envelope"></i>
+                            <span class="badge" ng-if="currentUser.mails.filter(model.unread).length > 0">{{currentUser.mails.filter(model.unread).length}}</span>
+                        </a>
 
                         <ul class="dropdown-menu">
                             <li>
@@ -208,7 +214,7 @@
                         <a href="#/inbox" ng-class="{'active': model.$location.url()=='/inbox'}">
                             <i class="fa fa-envelope nav_icon"></i>
                             Mailbox
-                            <span class="nav-badge">{{currentUser.mails.filter(model.unread).length}}</span>
+                            <span class="nav-badge" ng-if="currentUser.mails.filter(model.unread).length > 0">{{currentUser.mails.filter(model.unread).length}}</span>
                         </a>
                     </li>
                     <li>
@@ -222,7 +228,7 @@
                     <li>
                         <a href="#/reservations" ng-class="{'active': model.$location.url()=='/reservations'}">
                             <i class="fa fa-table nav_icon"></i>My Reservations
-                            <span class="nav-badge-btm">{{myReservs.length}}</span>
+                            <span class="nav-badge-btm" ng-if="myReservs.length > 0">{{myReservs.length}}</span>
                         </a>
                     </li>
                     <li>
