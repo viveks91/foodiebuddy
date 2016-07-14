@@ -1,6 +1,6 @@
 "use strict";
-var passport     = require('passport');
-var mongoose     = require('mongoose');
+var passport = require('passport');
+var mongoose = require('mongoose');
 
 module.exports = function(app, db) {
     var hwUserModel = require("./assignments/server/models/user.model.server.js")(db, mongoose);
