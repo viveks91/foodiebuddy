@@ -42,4 +42,4 @@ A social platform to connect all the foodies across the globe. Get on it [here](
 +	FrontEnd: __HTML5, CSS, bootstrap responsive__
 
 
-##### At this point, I think you should jump right to the [website](http://webdev2016-shankarvivek.rhcloud.com/project/client/index.html#/ "FoodieBuddy") and start exploring!
+At this point, I think you should jump right to the [website](http://webdev2016-shankarvivek.rhcloud.com/project/client/index.html#/ "FoodieBuddy") and start exploring!
