@@ -2,6 +2,8 @@
 
 A social platform to connect all the foodies across the globe. Get on it [here](http://webdev2016-shankarvivek.rhcloud.com/project/client/index.html#/ "FoodieBuddy") and meet your favorite foodies!
 
+(__Note__ : Since this is hosted on a free deployment platform, sometimes it takes time load on the first hit)
+
 ## Outline
 
 + Login
