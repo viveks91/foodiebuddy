@@ -40,7 +40,7 @@ A social platform to connect all the foodies across the globe. Get on it [here](
 +	Server: __Express__ on *NodeJS*
 +	Authentication: __Passport__
 +	Encryption: __Bcrypt__
-+	Webpage dynamicity: __AngularJS__
++	Webpage framework: __AngularJS__
 +	FrontEnd: __HTML5, CSS, bootstrap responsive__
 
 
