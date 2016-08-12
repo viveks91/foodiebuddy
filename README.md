@@ -1,14 +1,14 @@
 # [FoodieBuddy](http://webdev2016-shankarvivek.rhcloud.com/project/client/index.html#/ "FoodieBuddy")
 
-A social platform to connect all the foodies across the globe. Get on it [here](http://webdev2016-shankarvivek.rhcloud.com/project/client/index.html#/ "FoodieBuddy") and meet your favorite foodies.
+A social platform to connect all the foodies across the globe. Get on it [here](http://webdev2016-shankarvivek.rhcloud.com/project/client/index.html#/ "FoodieBuddy") and meet your favorite foodies!
 
-# Outline
+## Outline
 
 + Login
   - Create an account
   - User Facebook/Google
   - Log in with credentials
-+ Access news feed (activities of people you are following) on your home page 
++ Access news feed (activities of people you follow) on your home page 
 + Profile page 
   - Account details 
   - Quick view of followers
@@ -16,19 +16,20 @@ A social platform to connect all the foodies across the globe. Get on it [here](
   - Upcoming reservations
   - New emails
 + Email service
-  - Send an email to a person
-  - Get emails from other people
+  - Send emails to people
+  - Get emails from people
 + Restaurant Search (Powered by __Yelp__)
   - Make reservation at any restaurant
   - Restaurant details, such as phone, address, etc
   - Write review for a restaurant / Add to favorites
-  - Check reviews by others
+  - Check reviews about the restaurant
 + Search people
+  - Follow people
 + Keep tabs on your reservations (additional notifications on upcoming reservations)
 + Keep a list of favorite restaurants for easier access
 + Check your followers and people you are following
 
-# More for nerds
+## More for nerds
 
 +	Web Host: __Openshift__
 +	Database: __Mongo__
@@ -37,8 +38,8 @@ A social platform to connect all the foodies across the globe. Get on it [here](
 +	Server: __Express__ on *NodeJS*
 +	Authentication: __Passport__
 +	Encryption: __Bcrypt__
-+	FrontEnd: __HTML5, CSS, bootstrap responsive__
 +	Webpage dynamicity: __AngularJS__
++	FrontEnd: __HTML5, CSS, bootstrap responsive__
 
 
-### At this point, it is better to jump to the [website](http://webdev2016-shankarvivek.rhcloud.com/project/client/index.html#/ "FoodieBuddy") and start exploring!
+##### At this point, it is better to jump to the [website](http://webdev2016-shankarvivek.rhcloud.com/project/client/index.html#/ "FoodieBuddy") and start exploring!
